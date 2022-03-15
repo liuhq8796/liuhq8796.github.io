@@ -13,6 +13,8 @@ import HelloWorld from "@/components/HelloWorld.vue";
       height="125"
     />
 
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
