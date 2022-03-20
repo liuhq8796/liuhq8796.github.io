@@ -1,6 +1,16 @@
 version: "3.9"
 
 services:
+  personal-website-dev:
+    container_name: personal-website-dev
+    image: personal-website-dev-image
+    volumes:
+      - /root/personal-website/node_modules
+      - '.:/root/personal-website'
+    ports:
+      - "3022:22"
+      - "3000:3000"
+    tty: true
   personal-website-nginx:
     container_name: personal-website-nginx
     image: nginx:1.21.6
@@ -8,4 +18,4 @@ services:
       - ./dist:/usr/share/nginx/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 80:80
+      - "80:80"
