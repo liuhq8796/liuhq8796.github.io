@@ -23,11 +23,8 @@ import BookmarksJson from "@/json/bookmarks.json";
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .bookmarks {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+.bookmarks {
+  display: flex;
+  align-items: center;
 }
 </style>
