@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  personal-website-dev:
+  dev:
     container_name: personal-website-dev
     image: personal-website-dev-image
     volumes:
@@ -11,7 +11,7 @@ services:
       - "3022:22"
       - "3000:3000"
     tty: true
-  personal-website-nginx:
+  nginx:
     container_name: personal-website-nginx
     image: nginx:1.21.6
     volumes:
