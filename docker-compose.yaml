@@ -3,7 +3,7 @@ version: "3.9"
 services:
   dev:
     container_name: personal-website-dev
-    image: personal-website-dev-image
+    image: personal-website-dev-image:1.0.1
     volumes:
       - /root/personal-website/node_modules
       - '.:/root/personal-website'
