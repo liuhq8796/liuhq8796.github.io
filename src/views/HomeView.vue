@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 
-const el = ref<HTMLCanvasElement>();
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const ctx = computed(() => el.value!.getContext("2d")!);
+// utils
+import { useWindowSize } from "@vueuse/core";
 
-const WIDTH = 600;
-const HEIGHT = 600;
-
+// Interface
 interface Point {
   x: number;
   y: number;
@@ -19,15 +16,50 @@ interface Branch {
   angle: number;
 }
 
-function init() {
-  ctx.value.strokeStyle = "#fff";
+const el = ref<HTMLCanvasElement>();
+const ctx = ref<CanvasRenderingContext2D>();
+
+const { width, height } = useWindowSize();
+const color = "#88888825";
+
+onMounted(() => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  ctx.value = initCanvas(el.value!, width.value, height.value);
+  ctx.value.strokeStyle = color;
 
   step({
-    start: { x: WIDTH / 2, y: HEIGHT },
-    length: 40,
+    start: { x: width.value / 2, y: height.value },
+    length: 10,
     angle: -Math.PI / 2,
   });
-}
+});
+
+const initCanvas = (
+  canvas: HTMLCanvasElement,
+  width: number,
+  height: number
+) => {
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+  return setupCanvas(canvas);
+};
+
+const setupCanvas = (canvas: HTMLCanvasElement) => {
+  // Get the device pixel ratio, falling back to 1.
+  var dpr = window.devicePixelRatio || 1;
+  // Get the size of the canvas in CSS pixels.
+  var rect = canvas.getBoundingClientRect();
+  // Give the canvas pixel dimensions of their CSS
+  // size * the device pixel ratio.
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  var ctx = canvas.getContext("2d")!;
+  // Scale all drawing operations by the dpr, so you
+  // don't have to worry about the difference.
+  ctx.scale(dpr, dpr);
+  return ctx;
+};
 
 const pendingTask: (() => void)[] = [];
 
@@ -35,7 +67,7 @@ function step(b: Branch, depth = 0) {
   const end = getEndPoint(b);
   drawBranch(b);
 
-  if (depth < 2 || Math.random() < 0.5) {
+  if (depth < 5 || Math.random() < 0.5) {
     pendingTask.push(() =>
       step(
         {
@@ -48,7 +80,7 @@ function step(b: Branch, depth = 0) {
     );
   }
 
-  if (depth < 2 || Math.random() < 0.5) {
+  if (depth < 5 || Math.random() < 0.5) {
     pendingTask.push(() =>
       step(
         {
@@ -72,7 +104,7 @@ let frameCount = 0;
 function startFrame() {
   requestAnimationFrame(() => {
     frameCount += 1;
-    if (frameCount % 30 === 0) frame();
+    if (frameCount % 10 === 0) frame();
     startFrame();
   });
 }
@@ -80,10 +112,12 @@ function startFrame() {
 startFrame();
 
 function lineTo(p1: Point, p2: Point) {
-  ctx.value.beginPath(); // Start a new path
-  ctx.value.moveTo(p1.x, p1.y); // Move the pen to (30, 50)
-  ctx.value.lineTo(p2.x, p2.y); // Draw a line to (150, 40)
-  ctx.value.stroke(); // Render the path
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const context = ctx.value!;
+  context.beginPath(); // Start a new path
+  context.moveTo(p1.x, p1.y); // Move the pen to (30, 50)
+  context.lineTo(p2.x, p2.y); // Draw a line to (150, 40)
+  context.stroke(); // Render the path
 }
 
 function getEndPoint(b: Branch) {
@@ -96,14 +130,10 @@ function getEndPoint(b: Branch) {
 function drawBranch(b: Branch) {
   lineTo(b.start, getEndPoint(b));
 }
-
-onMounted(() => {
-  init();
-});
 </script>
 
 <template>
   <main class="bg-neutral-900 w-screen h-screen">
-    <canvas ref="el" width="600" height="600"></canvas>
+    <canvas ref="el"></canvas>
   </main>
 </template>
