@@ -28,9 +28,27 @@ onMounted(() => {
   ctx.value.strokeStyle = color;
 
   step({
-    start: { x: width.value / 2, y: height.value },
-    length: 10,
+    start: { x: width.value * (Math.random() * 0.6 + 0.2), y: height.value },
+    length: 5,
     angle: -Math.PI / 2,
+  });
+
+  step({
+    start: { x: width.value * (Math.random() * 0.6 + 0.2), y: 0 },
+    length: 5,
+    angle: Math.PI / 2,
+  });
+
+  step({
+    start: { x: 0, y: height.value * (Math.random() * 0.6 + 0.2) },
+    length: 5,
+    angle: 0,
+  });
+
+  step({
+    start: { x: width.value, y: height.value * (Math.random() * 0.6 + 0.2) },
+    length: 5,
+    angle: -Math.PI,
   });
 });
 
@@ -65,16 +83,15 @@ const setupCanvas = (
 
 const pendingTask: (() => void)[] = [];
 
-function step(b: Branch, depth = 0) {
-  const end = getEndPoint(b);
-  drawBranch(b);
+const step = (b: Branch, depth = 0) => {
+  const end = drawBranch(b);
 
-  if (depth < 5 || Math.random() < 0.5) {
+  if ((depth < 5 || Math.random() < 0.5) && depth < 200) {
     pendingTask.push(() =>
       step(
         {
           start: end,
-          length: b.length + Math.random() * 10 - 5,
+          length: b.length,
           angle: b.angle - 0.3 * Math.random(),
         },
         depth + 1
@@ -82,57 +99,59 @@ function step(b: Branch, depth = 0) {
     );
   }
 
-  if (depth < 5 || Math.random() < 0.5) {
+  if ((depth < 5 || Math.random() < 0.5) && depth < 200) {
     pendingTask.push(() =>
       step(
         {
           start: end,
-          length: b.length + Math.random() * 10 - 5,
+          length: b.length,
           angle: b.angle + 0.3 * Math.random(),
         },
         depth + 1
       )
     );
   }
-}
+};
 
-function frame() {
+const frame = () => {
   const task = [...pendingTask];
   pendingTask.length = 0;
   task.forEach((fn) => fn());
-}
+};
 
 let frameCount = 0;
-function startFrame() {
+const startFrame = () => {
   requestAnimationFrame(() => {
     frameCount += 1;
     if (!pendingTask.length) return;
     if (frameCount % 10 === 0) frame();
     startFrame();
   });
-}
+};
 
 startFrame();
 
-function lineTo(p1: Point, p2: Point) {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const context = ctx.value!;
-  context.beginPath(); // Start a new path
-  context.moveTo(p1.x, p1.y); // Move the pen to (30, 50)
-  context.lineTo(p2.x, p2.y); // Draw a line to (150, 40)
-  context.stroke(); // Render the path
-}
+const lineTo = (p1: Point, p2: Point) => {
+  ctx.value?.beginPath(); // Start a new path
+  ctx.value?.moveTo(p1.x, p1.y); // Move the pen to (30, 50)
+  ctx.value?.lineTo(p2.x, p2.y); // Draw a line to (150, 40)
+  ctx.value?.stroke(); // Render the path
+};
 
-function getEndPoint(b: Branch) {
-  return {
-    x: b.start.x + b.length * Math.cos(b.angle),
-    y: b.start.y + b.length * Math.sin(b.angle),
-  };
-}
+const getEndPoint = (b: Branch) => {
+  const x = b.start.x + b.length * Math.cos(b.angle);
+  const y = b.start.y + b.length * Math.sin(b.angle);
+  if (x < 0 || x > width.value || y < 0 || y > height.value) {
+    b.angle += Math.PI;
+  }
+  return { x, y };
+};
 
-function drawBranch(b: Branch) {
-  lineTo(b.start, getEndPoint(b));
-}
+const drawBranch = (b: Branch) => {
+  const end = getEndPoint(b);
+  lineTo(b.start, end);
+  return end;
+};
 </script>
 
 <template>
