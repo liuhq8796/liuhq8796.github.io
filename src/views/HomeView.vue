@@ -30,25 +30,25 @@ onMounted(() => {
   step({
     start: { x: width.value * (Math.random() * 0.6 + 0.2), y: height.value },
     length: 5,
-    angle: -Math.PI / 2,
+    angle: -Math.PI / 2 + ((Math.random() * Math.PI) / 2 - Math.PI / 4),
   });
 
   step({
     start: { x: width.value * (Math.random() * 0.6 + 0.2), y: 0 },
     length: 5,
-    angle: Math.PI / 2,
+    angle: Math.PI / 2 + ((Math.random() * Math.PI) / 2 - Math.PI / 4),
   });
 
   step({
     start: { x: 0, y: height.value * (Math.random() * 0.6 + 0.2) },
     length: 5,
-    angle: 0,
+    angle: 0 + ((Math.random() * Math.PI) / 2 - Math.PI / 4),
   });
 
   step({
     start: { x: width.value, y: height.value * (Math.random() * 0.6 + 0.2) },
     length: 5,
-    angle: -Math.PI,
+    angle: -Math.PI + ((Math.random() * Math.PI) / 2 - Math.PI / 4),
   });
 });
 
@@ -83,10 +83,12 @@ const setupCanvas = (
 
 const pendingTask: (() => void)[] = [];
 
+const MaxDepth = 50;
+
 const step = (b: Branch, depth = 0) => {
   const end = drawBranch(b);
 
-  if ((depth < 5 || Math.random() < 0.5) && depth < 200) {
+  if ((depth < 5 || Math.random() < 0.5) && depth < MaxDepth) {
     pendingTask.push(() =>
       step(
         {
@@ -99,7 +101,7 @@ const step = (b: Branch, depth = 0) => {
     );
   }
 
-  if ((depth < 5 || Math.random() < 0.5) && depth < 200) {
+  if ((depth < 5 || Math.random() < 0.5) && depth < MaxDepth) {
     pendingTask.push(() =>
       step(
         {
@@ -119,12 +121,14 @@ const frame = () => {
   task.forEach((fn) => fn());
 };
 
-let frameCount = 0;
+let lastFrame = 0;
 const startFrame = () => {
-  requestAnimationFrame(() => {
-    frameCount += 1;
+  requestAnimationFrame((timestamp) => {
+    if (timestamp - lastFrame > 16) {
+      frame();
+      lastFrame = timestamp;
+    }
     if (!pendingTask.length) return;
-    if (frameCount % 10 === 0) frame();
     startFrame();
   });
 };
