@@ -101,12 +101,12 @@ let lastTime = 0;
 const renderStart = () => {
   requestAnimationFrame((time) => {
     if (time - lastTime > 16) {
+      lastTime = time;
       const tempQueue = [...branchRenderQueue];
       branchRenderQueue.length = 0;
       tempQueue.forEach((fn) => fn());
     }
     if (branchRenderQueue.length > 0) {
-      lastTime = time;
       renderStart();
     }
   });
