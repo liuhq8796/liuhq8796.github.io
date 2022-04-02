@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { RouterLink } from "vue-router";
+
+// Components
+import { ChevronLeftIcon } from "@heroicons/vue/outline";
 
 // Interface
 interface Point {
@@ -19,23 +23,33 @@ const WIDTH = 400;
 const HEIGHT = 400;
 // 画笔颜色
 const COLOR = "#888888";
+// 分支长度
+const length = ref(10);
+// 最小深度
+const minDepth = ref(5);
 
+// template ref
 const el = ref<HTMLCanvasElement | null>(null);
+// canvas context
 const ctx = ref<CanvasRenderingContext2D | null>(null);
+// 渲染分支函数队列
+const branchRenderQueue: (() => void)[] = [];
 
 onMounted(() => {
   el.value && (ctx.value = setupCanvas(el.value, WIDTH, HEIGHT));
   ctx.value && (ctx.value.strokeStyle = COLOR);
 
-  treeLoop({
-    start: { x: WIDTH / 2, y: HEIGHT },
-    angle: -Math.PI / 2,
-    length: 5,
+  branchRenderQueue.push(() => {
+    branchLoop({
+      start: { x: WIDTH / 2, y: HEIGHT },
+      angle: -Math.PI / 2,
+      length: length.value,
+    });
   });
+  renderStart();
 });
 
-// 启动 Canvas
-// 适配高分屏
+// 启动 Canvas 同时适配高分屏
 const setupCanvas = (
   canvas: HTMLCanvasElement,
   width: number,
@@ -62,34 +76,43 @@ const setupCanvas = (
   return ctx;
 };
 
-const branchRenderQueue: (() => void)[] = [];
+const branchLoop = (b: Branch, depth = 0) => {
+  const end = drawBranch(b);
+  // 超出画布外的分支不再渲染
+  if (end.x < 0 || end.x > WIDTH || end.y < 0 || end.y > HEIGHT) return;
 
-const treeLoop = (b: Branch, depth = 0) => {
-  requestAnimationFrame(() => {
-    const end = drawBranch(b);
-    if (end.x < 0 || end.y < 0) return;
+  if (depth < minDepth.value || Math.random() < 0.5) {
+    const leftBranch: Branch = {
+      start: end,
+      length: b.length,
+      angle: b.angle - (Math.random() * Math.PI) / 6,
+    };
+    branchRenderQueue.push(() => branchLoop(leftBranch, depth + 1));
+  }
 
-    if (depth < 3 || Math.random() < 0.5) {
-      const leftBranch: Branch = {
-        start: end,
-        length: b.length,
-        angle: b.angle + (-Math.random() * 0.9 * Math.PI) / 6,
-      };
-      branchRenderQueue.push(() => treeLoop(leftBranch, depth + 1));
+  if (depth < minDepth.value || Math.random() < 0.5) {
+    const rightBranch: Branch = {
+      start: end,
+      length: b.length,
+      angle: b.angle + (Math.random() * 0.9 * Math.PI) / 6,
+    };
+    branchRenderQueue.push(() => branchLoop(rightBranch, depth + 1));
+  }
+};
+
+let lastTime = 0;
+
+const renderStart = () => {
+  requestAnimationFrame((time) => {
+    if (time - lastTime > 16) {
+      const tempQueue = [...branchRenderQueue];
+      branchRenderQueue.length = 0;
+      tempQueue.forEach((fn) => fn());
     }
-
-    if (depth < 3 || Math.random() < 0.5) {
-      const rightBranch: Branch = {
-        start: end,
-        length: b.length,
-        angle: b.angle + (Math.random() * 0.9 * Math.PI) / 6,
-      };
-      branchRenderQueue.push(() => treeLoop(rightBranch, depth + 1));
+    if (branchRenderQueue.length > 0) {
+      lastTime = time;
+      renderStart();
     }
-
-    const temp = [...branchRenderQueue];
-    branchRenderQueue.length = 0;
-    temp.forEach((fn) => fn());
   });
 };
 
@@ -111,10 +134,38 @@ const lineTo = (start: Point, end: Point) => {
   ctx.value?.lineTo(end.x, end.y); // Draw a line to (150, 40)
   ctx.value?.stroke(); // Render the path
 };
+
+const clearCanvas = () => {
+  ctx.value?.clearRect(0, 0, WIDTH, HEIGHT);
+};
+
+const repaint = () => {
+  clearCanvas();
+  branchRenderQueue.length = 0;
+
+  branchRenderQueue.push(() => {
+    branchLoop({
+      start: { x: WIDTH / 2, y: HEIGHT },
+      angle: -Math.PI / 2,
+      length: length.value,
+    });
+  });
+  renderStart();
+};
 </script>
 
 <template>
-  <main class="w-screen h-screen flex justify-center items-center">
-    <canvas ref="el" class="border border-black"></canvas>
+  <main class="w-screen h-screen flex flex-col justify-center items-center">
+    <div>
+      <RouterLink to="/"
+        ><ChevronLeftIcon class="w-6 h-6"></ChevronLeftIcon
+      ></RouterLink>
+      <canvas ref="el" class="mt-4 border border-black"></canvas>
+      <div class="mt-4">
+        <button @click="repaint">重新绘制</button>
+      </div>
+      <div class="mt-4">分支长度：<input type="text" v-model="length" /></div>
+      <div class="mt-4">最小深度：<input type="text" v-model="minDepth" /></div>
+    </div>
   </main>
 </template>
