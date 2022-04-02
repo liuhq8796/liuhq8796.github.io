@@ -18,9 +18,9 @@ interface Branch {
 }
 
 // canvas 宽度
-const WIDTH = 400;
+let width = 0;
 // canvas 高度
-const HEIGHT = 400;
+let height = 0;
 // 画笔颜色
 const COLOR = "#888888";
 // 分支长度
@@ -36,12 +36,12 @@ const ctx = ref<CanvasRenderingContext2D | null>(null);
 const branchRenderQueue: (() => void)[] = [];
 
 onMounted(() => {
-  el.value && (ctx.value = setupCanvas(el.value, WIDTH, HEIGHT));
+  el.value && (ctx.value = setupCanvas(el.value));
   ctx.value && (ctx.value.strokeStyle = COLOR);
 
   branchRenderQueue.push(() => {
     branchLoop({
-      start: { x: WIDTH / 2, y: HEIGHT },
+      start: { x: width / 2, y: height },
       angle: -Math.PI / 2,
       length: length.value,
     });
@@ -50,23 +50,19 @@ onMounted(() => {
 });
 
 // 启动 Canvas 同时适配高分屏
-const setupCanvas = (
-  canvas: HTMLCanvasElement,
-  width: number,
-  height: number
-) => {
-  // Init Canvas
-  canvas.style.width = `${width}px`;
-  canvas.style.height = `${height}px`;
-
+const setupCanvas = (canvas: HTMLCanvasElement) => {
   // Get the device pixel ratio, falling back to 1.
   const dpr = window.devicePixelRatio || 1;
   // Get the size of the canvas in CSS pixels.
   const rect = canvas.getBoundingClientRect();
+
+  width = rect.width;
+  height = rect.height;
+
   // Give the canvas pixel dimensions of their CSS
   // size * the device pixel ratio.
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
 
   const ctx = canvas.getContext("2d");
   // Scale all drawing operations by the dpr, so you
@@ -79,7 +75,7 @@ const setupCanvas = (
 const branchLoop = (b: Branch, depth = 0) => {
   const end = drawBranch(b);
   // 超出画布外的分支不再渲染
-  if (end.x < 0 || end.x > WIDTH || end.y < 0 || end.y > HEIGHT) return;
+  if (end.x < 0 || end.x > width || end.y < 0 || end.y > height) return;
 
   if (depth < minDepth.value || Math.random() < 0.5) {
     const leftBranch: Branch = {
@@ -136,7 +132,7 @@ const lineTo = (start: Point, end: Point) => {
 };
 
 const clearCanvas = () => {
-  ctx.value?.clearRect(0, 0, WIDTH, HEIGHT);
+  ctx.value?.clearRect(0, 0, width, height);
 };
 
 const repaint = () => {
@@ -145,7 +141,7 @@ const repaint = () => {
 
   branchRenderQueue.push(() => {
     branchLoop({
-      start: { x: WIDTH / 2, y: HEIGHT },
+      start: { x: width / 2, y: height },
       angle: -Math.PI / 2,
       length: length.value,
     });
@@ -157,10 +153,8 @@ const repaint = () => {
 <template>
   <main class="w-screen h-screen flex flex-col justify-center items-center">
     <div>
-      <RouterLink to="/"
-        ><ChevronLeftIcon class="w-6 h-6"></ChevronLeftIcon
-      ></RouterLink>
-      <canvas ref="el" class="mt-4 border border-black"></canvas>
+      <RouterLink to="/"><ChevronLeftIcon class="w-6 h-6" /></RouterLink>
+      <canvas ref="el" class="mt-4 w-96 h-96 border border-black"></canvas>
       <div class="mt-4">
         <button @click="repaint">重新绘制</button>
       </div>
