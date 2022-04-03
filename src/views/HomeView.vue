@@ -4,8 +4,25 @@ import { RouterLink } from "vue-router";
 
 <template>
   <main class="w-screen h-screen flex justify-center items-center">
-    <div class="w-96 h-96 p-4 border border-black">
-      <RouterLink to="/plum">1. Plum</RouterLink>
+    <div>
+      <h1 class="text-lg font-bold">Something Interesting</h1>
+      <div class="w-96 mt-2 gap-8 columns-2 text-gray-400 hover:text-gray-600">
+        <RouterLink class="block" to="/plum">
+          <span class="opacity-50">01.</span>
+          <strong>Plum</strong>
+        </RouterLink>
+      </div>
+      <h1 class="mt-8">
+        <a
+          class="text-gray-400 hover:text-gray-600"
+          href="https://github.com/liuhq8796/personal-website"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Github</a
+        >
+        <br />
+        <span class="text-gray-300">from 2022/3/12</span>
+      </h1>
     </div>
   </main>
 </template>
