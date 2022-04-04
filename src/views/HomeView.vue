@@ -6,10 +6,17 @@ import { RouterLink } from "vue-router";
   <main class="w-screen h-screen flex justify-center items-center">
     <div>
       <h1 class="text-lg font-bold">Something Interesting</h1>
-      <div class="w-96 mt-2 gap-8 columns-2 text-gray-400 hover:text-gray-600">
-        <RouterLink class="block" to="/plum">
+      <div class="w-96 mt-2 gap-8 columns-2">
+        <RouterLink class="block text-gray-400 hover:text-gray-600" to="/plum">
           <span class="opacity-50">01.</span>
           <strong>Plum</strong>
+        </RouterLink>
+        <RouterLink
+          class="block text-gray-400 hover:text-gray-600"
+          to="/minesweeper"
+        >
+          <span class="opacity-50">02.</span>
+          <strong>Minesweeper</strong>
         </RouterLink>
       </div>
       <h1 class="mt-8">
