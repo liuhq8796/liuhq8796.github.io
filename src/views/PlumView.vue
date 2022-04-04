@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
 // Components
-import { ChevronLeftIcon } from "@heroicons/vue/outline";
+import IconRoundChevronLeft from "../components/icons/IconRoundChevronLeft.vue";
 
 // Interface
 interface Point {
@@ -153,7 +153,7 @@ const repaint = () => {
 <template>
   <main class="w-screen h-screen flex flex-col justify-center items-center">
     <div>
-      <RouterLink to="/"><ChevronLeftIcon class="w-6 h-6" /></RouterLink>
+      <RouterLink to="/"><IconRoundChevronLeft class="w-6 h-6" /></RouterLink>
       <canvas ref="el" class="mt-4 w-96 h-96 border border-black"></canvas>
       <div class="mt-4">
         <button @click="repaint">重新绘制</button>

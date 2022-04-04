@@ -1,7 +1,6 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@heroicons/vue': ^1.0.6
   '@rushstack/eslint-patch': ^1.1.0
   '@types/node': ^16.11.25
   '@vitejs/plugin-vue': ^2.2.2
@@ -24,7 +23,6 @@ specifiers:
   vue-tsc: ^0.31.4
 
 dependencies:
-  '@heroicons/vue': 1.0.6_vue@3.2.31
   '@vueuse/core': 8.2.0_vue@3.2.31
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
   vue: 3.2.31
@@ -383,14 +381,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@heroicons/vue/1.0.6_vue@3.2.31:
-    resolution: {integrity: sha512-ng2YcCQrdoQWEFpw+ipFl2rZo8mZ56v0T5+MyfQQvNqfKChwgP6DMloZLW+rl17GEcHkE3H82UTAMKBKZr4+WA==}
-    peerDependencies:
-      vue: '>= 3'
-    dependencies:
-      vue: 3.2.31
-    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}

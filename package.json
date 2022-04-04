@@ -10,7 +10,6 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@heroicons/vue": "^1.0.6",
     "@vueuse/core": "^8.2.0",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",
