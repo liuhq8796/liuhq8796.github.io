@@ -7,12 +7,12 @@ import IconFlag from "../components/icons/IconFlag.vue";
 import type { BlockState } from "@/types/Minesweeper";
 
 defineProps<{
-  data: BlockState[];
+  data: BlockState;
 }>();
 
 defineEmits<{
-  (e: "click", value: BlockState): void;
-  (e: "right-click", value: BlockState): void;
+  (e: "click"): void;
+  (e: "right-click"): void;
 }>();
 
 const NUMBER_COLOR = [
@@ -36,18 +36,16 @@ const getBlockClass = (item: BlockState) => {
 <template>
   <button
     class="w-10 h-10 border border-gray-400 flex justify-center items-center"
-    :class="getBlockClass(item)"
-    v-for="(item, x) in data"
-    :key="x"
-    @click="$emit('click', item)"
-    @contextmenu.prevent="$emit('right-click', item)"
+    :class="getBlockClass(data)"
+    @click="$emit('click')"
+    @contextmenu.prevent="$emit('right-click')"
   >
-    <template v-if="item.flagged"><IconFlag /></template>
-    <template v-else-if="item.revealed">
-      <div v-if="item.mine">
+    <template v-if="data.flagged"><IconFlag /></template>
+    <template v-else-if="data.revealed">
+      <div v-if="data.mine">
         <IconBomb />
       </div>
-      <div v-else>{{ item.adjacentMines }}</div>
+      <div v-else>{{ data.adjacentMines }}</div>
     </template>
   </button>
 </template>
