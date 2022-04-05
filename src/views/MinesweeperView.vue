@@ -5,7 +5,7 @@ import { GamePlqy } from "@/components/MineClass";
 import { watchEffect } from "vue";
 
 const play = new GamePlqy(10, 10);
-const data = play.state.value;
+const data = play.state;
 
 watchEffect(() => play.checkGameState());
 </script>
@@ -24,6 +24,9 @@ watchEffect(() => play.checkGameState());
             @right-click="play.onRightClick(item)"
           />
         </div>
+      </div>
+      <div class="flex justify-center">
+        <button @click="play.reset()">Reset</button>
       </div>
     </div>
   </main>

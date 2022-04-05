@@ -22,6 +22,7 @@ export class GamePlqy {
   }
 
   reset() {
+    this.mineGenerated = false;
     this.state.value = Array.from({ length: this.width }, (_, y) =>
       Array.from(
         { length: this.width },
