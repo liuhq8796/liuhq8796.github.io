@@ -8,14 +8,14 @@ import { RouterLink } from "vue-router";
       <h1 class="text-lg font-bold">Something Interesting</h1>
       <div class="w-96 mt-2 gap-8 columns-2">
         <RouterLink class="block text-gray-400 hover:text-gray-600" to="/plum">
-          <span class="opacity-50">01.</span>
+          <span class="opacity-50">01. </span>
           <strong>Plum</strong>
         </RouterLink>
         <RouterLink
           class="block text-gray-400 hover:text-gray-600"
           to="/minesweeper"
         >
-          <span class="opacity-50">02.</span>
+          <span class="opacity-50">02. </span>
           <strong>Minesweeper</strong>
         </RouterLink>
       </div>
