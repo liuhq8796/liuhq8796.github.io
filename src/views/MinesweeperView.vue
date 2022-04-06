@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import MineBlock from "@/components/MIneBlock.vue";
 
-import { GamePlqy } from "@/components/MineClass";
+import { GamePlay } from "@/components/MineClass";
 import { watchEffect } from "vue";
 
-const play = new GamePlqy(10, 10);
+const play = new GamePlay(10, 10);
 const data = play.state;
 
 watchEffect(() => play.checkGameState());

@@ -13,7 +13,7 @@ const DIRECTIONS = [
   [-1, 0],
 ] as const;
 
-export class GamePlqy {
+export class GamePlay {
   state = ref<BlockState[][]>([]);
   mineGenerated = false;
 
