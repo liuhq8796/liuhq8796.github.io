@@ -13,50 +13,78 @@ const DIRECTIONS = [
   [-1, 0],
 ] as const;
 
+interface GameState {
+  board: BlockState[][];
+  mineGenerated: boolean;
+  gameState: "playing" | "lost" | "won";
+}
+
 export class GamePlay {
-  state = ref<BlockState[][]>([]);
-  mineGenerated = false;
+  state = ref<GameState>({
+    board: [],
+    mineGenerated: false,
+    gameState: "playing",
+  });
 
   constructor(public width: number, public height: number) {
     this.reset();
   }
 
+  get board() {
+    return this.state.value?.board;
+  }
+
   reset() {
-    this.mineGenerated = false;
-    this.state.value = Array.from({ length: this.width }, (_, y) =>
-      Array.from(
-        { length: this.width },
-        (_, x): BlockState => ({
-          x,
-          y,
-          adjacentMines: 0,
-          revealed: false,
-        })
-      )
-    );
+    this.state.value = {
+      mineGenerated: false,
+      gameState: "playing",
+      board: Array.from({ length: this.height }, (_, y) => {
+        return Array.from({ length: this.width }, (_, x) => {
+          return {
+            x,
+            y,
+            adjacentMines: 0,
+            mine: false,
+            revealed: false,
+            flagged: false,
+          };
+        });
+      }),
+    };
   }
 
   onClick(item: BlockState) {
-    if (!this.mineGenerated) {
+    if (this.state.value.gameState !== "playing") return;
+    if (!this.state.value?.mineGenerated) {
       this.generateMines(item);
       this.updateNumbers();
-      this.mineGenerated = true;
+      this.state.value.mineGenerated = true;
     }
 
     item.revealed = true;
     if (item.mine) {
-      alert("BOOM!");
+      this.state.value.gameState = "lost";
+      this.showAllMines();
+      return;
     } else {
       this.expendZero(item);
     }
   }
 
+  showAllMines() {
+    this.flatten(this.board).forEach((block) => {
+      if (block.mine) block.revealed = true;
+    });
+  }
+
   onRightClick(block: BlockState) {
+    if (this.state.value?.gameState !== "playing") return;
+    if (block.revealed) return;
     block.flagged = !block.flagged;
   }
 
   generateMines(initial: BlockState) {
-    for (const row of this.state.value) {
+    for (const row of this.board) {
       for (const block of row) {
         if (
           Math.abs(initial.x - block.x) <= 1 &&
@@ -69,7 +97,7 @@ export class GamePlay {
   }
 
   updateNumbers() {
-    for (const row of this.state.value) {
+    for (const row of this.state.value?.board || []) {
       for (const item of row) {
         if (item.mine) continue;
         this.getSibilings(item).forEach((sibiling) => {
@@ -94,23 +122,26 @@ export class GamePlay {
       const x = block.x + dx;
       const y = block.y + dy;
       if (x < 0 || x >= this.width || y < 0 || y >= this.height) continue;
-      sibilings.push(this.state.value[y][x]);
+      sibilings.push(this.board[y][x]);
     }
     return sibilings;
   }
 
-  flat(arr: BlockState[][]) {
-    return arr.reduce((acc, val) => acc.concat(val), []);
+  // 数组扁平化
+  flatten<T>(arr: T[][]): T[] {
+    return arr.reduce((flat, toFlatten) => flat.concat(toFlatten), []);
   }
 
   checkGameState() {
-    const blocks = this.flat(this.state.value);
+    if (!this.state.value.mineGenerated) return;
+    const blocks = this.flatten(this.board);
 
     if (blocks.every((block) => block.revealed || block.flagged)) {
-      if (blocks.every((block) => block.flagged && block.mine)) {
-        alert("You cheat!");
+      if (blocks.some((block) => block.flagged && !block.mine)) {
+        this.state.value.gameState = "won";
+        this.showAllMines();
       } else {
-        alert("You win!");
+        this.state.value.gameState = "lost";
       }
     }
   }

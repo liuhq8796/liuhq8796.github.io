@@ -2,10 +2,12 @@
 import MineBlock from "@/components/MIneBlock.vue";
 
 import { GamePlay } from "@/components/MineClass";
-import { watchEffect } from "vue";
+import { computed, watchEffect } from "vue";
+import { useStorage } from "@vueuse/core";
 
 const play = new GamePlay(10, 10);
-const data = play.state;
+useStorage("vuesweeper-state", play);
+const data = computed(() => play.board);
 
 watchEffect(() => play.checkGameState());
 </script>
