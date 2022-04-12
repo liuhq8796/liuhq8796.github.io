@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
-
-// Components
-import IconRoundChevronLeft from "../components/icons/IconRoundChevronLeft.vue";
-
 // Interface
 interface Point {
   x: number;

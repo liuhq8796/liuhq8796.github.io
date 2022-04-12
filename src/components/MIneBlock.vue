@@ -1,8 +1,4 @@
 <script setup lang="ts">
-// Components
-import IconBomb from "../components/icons/IconBomb.vue";
-import IconFlag from "../components/icons/IconFlag.vue";
-
 // Interfaces
 import type { BlockState } from "@/types/Minesweeper";
 

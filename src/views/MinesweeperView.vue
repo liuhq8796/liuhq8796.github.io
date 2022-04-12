@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import MineBlock from "@/components/MIneBlock.vue";
-
 import { GamePlay } from "@/components/MineClass";
 
 const play = new GamePlay(10, 10);
