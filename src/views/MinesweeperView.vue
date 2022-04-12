@@ -16,7 +16,7 @@ watchEffect(() => play.checkGameState());
         <div v-for="(row, y) in data" :key="y" class="flex">
           <MineBlock
             v-for="(item, x) in row"
-            :key="x"
+            :key="y * 10 + x"
             :data="item"
             @click="play.onClick(item)"
             @right-click="play.onRightClick(item)"
