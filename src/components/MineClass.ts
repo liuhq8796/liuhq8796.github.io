@@ -1,6 +1,5 @@
 // Interfaces
 import type { BlockState } from "@/types/Minesweeper";
-import { ref } from "vue";
 
 const DIRECTIONS = [
   [-1, -1],

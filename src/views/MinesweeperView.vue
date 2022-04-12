@@ -2,8 +2,6 @@
 import MineBlock from "@/components/MIneBlock.vue";
 
 import { GamePlay } from "@/components/MineClass";
-import { computed, watchEffect } from "vue";
-import { useStorage } from "@vueuse/core";
 
 const play = new GamePlay(10, 10);
 useStorage("vuesweeper-state", play);
