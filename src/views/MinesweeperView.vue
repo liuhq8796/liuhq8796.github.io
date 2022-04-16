@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { GamePlay } from "@/components/MineClass";
+import Confetti from "../components/Confetti.vue";
 
-const play = new GamePlay(10, 10);
+const play = new GamePlay(6, 6, 10);
 useStorage("vuesweeper-state", play);
 const data = computed(() => play.board);
 
+const mineCount = computed(() => {
+  return play.blocks.reduce((a, b) => a + (b.mine ? 1 : 0), 0);
+});
 watchEffect(() => play.checkGameState());
 </script>
 
@@ -23,9 +27,14 @@ watchEffect(() => play.checkGameState());
           />
         </div>
       </div>
+
+      <div>Count: {{ mineCount }}</div>
+
       <div class="flex justify-center">
         <button @click="play.reset()">Reset</button>
       </div>
     </div>
   </main>
+
+  <Confetti :passed="play.state.value.gameState === 'won'" />
 </template>

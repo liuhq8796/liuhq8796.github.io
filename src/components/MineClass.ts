@@ -25,12 +25,20 @@ export class GamePlay {
     gameState: "playing",
   });
 
-  constructor(public width: number, public height: number) {
+  constructor(
+    public width: number,
+    public height: number,
+    public mines: number
+  ) {
     this.reset();
   }
 
   get board() {
     return this.state.value?.board;
+  }
+
+  get blocks() {
+    return this.flatten(this.state.value.board);
   }
 
   reset() {
@@ -52,11 +60,18 @@ export class GamePlay {
     };
   }
 
+  random(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+  }
+
+  randomInt(min: number, max: number) {
+    return Math.round(this.random(min, max));
+  }
+
   onClick(item: BlockState) {
     if (this.state.value.gameState !== "playing") return;
     if (!this.state.value?.mineGenerated) {
-      this.generateMines(item);
-      this.updateNumbers();
+      this.generateMines(this.board, item);
       this.state.value.mineGenerated = true;
     }
 
@@ -82,17 +97,30 @@ export class GamePlay {
     block.flagged = !block.flagged;
   }
 
-  generateMines(initial: BlockState) {
-    for (const row of this.board) {
-      for (const block of row) {
-        if (
-          Math.abs(initial.x - block.x) <= 1 &&
-          Math.abs(initial.y - block.y) <= 1
-        )
-          continue;
-        block.mine = Math.random() < 0.1;
+  generateMines(state: BlockState[][], initial: BlockState) {
+    const placeRandom = () => {
+      const x = this.randomInt(0, this.width - 1);
+      const y = this.randomInt(0, this.height - 1);
+      const block = state[y][x];
+      if (Math.abs(initial.x - block.x) <= 1) {
+        return false;
       }
-    }
+      if (Math.abs(initial.y - block.y) <= 1) {
+        return false;
+      }
+      if (block.mine) {
+        return false;
+      }
+      block.mine = true;
+      return true;
+    };
+    Array.from({ length: this.mines }, () => null).forEach(() => {
+      let placed = false;
+      while (!placed) {
+        placed = placeRandom();
+      }
+    });
+    this.updateNumbers();
   }
 
   updateNumbers() {

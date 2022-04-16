@@ -41,7 +41,7 @@ const getBlockClass = (item: BlockState) => {
       <div v-if="data.mine">
         <IconBomb />
       </div>
-      <div v-else>{{ data.adjacentMines }}</div>
+      <div v-else class="font-semibold">{{ data.adjacentMines }}</div>
     </template>
   </button>
 </template>
