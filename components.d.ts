@@ -2,16 +2,16 @@
 // We suggest you to commit this file into source control
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
-declare module '@vue/runtime-core' {
+declare module "vue" {
   export interface GlobalComponents {
-    Confetti: typeof import('./src/components/Confetti.vue')['default']
-    IconBomb: typeof import('./src/components/icons/IconBomb.vue')['default']
-    IconFlag: typeof import('./src/components/icons/IconFlag.vue')['default']
-    IconRoundChevronLeft: typeof import('./src/components/icons/IconRoundChevronLeft.vue')['default']
-    MineBlock: typeof import('./src/components/MineBlock.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
+    Confetti: typeof import("./src/components/Confetti.vue")["default"];
+    IconBomb: typeof import("./src/components/icons/IconBomb.vue")["default"];
+    IconFlag: typeof import("./src/components/icons/IconFlag.vue")["default"];
+    IconRoundChevronLeft: typeof import("./src/components/icons/IconRoundChevronLeft.vue")["default"];
+    MineBlock: typeof import("./src/components/MineBlock.vue")["default"];
+    RouterLink: typeof import("vue-router")["RouterLink"];
+    RouterView: typeof import("vue-router")["RouterView"];
   }
 }
 
-export { }
+export {};
