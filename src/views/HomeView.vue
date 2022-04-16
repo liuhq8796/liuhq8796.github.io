@@ -1,18 +1,54 @@
+<script lang="ts" setup>
+// 生成编号并自动补零函数
+const generateId = (function () {
+  let id = 1;
+  return function () {
+    return padStart(`${id++}`, 2, "0");
+  };
+})();
+
+// padStart 函数
+const padStart = (current: string, targetLength: number, padString: string) => {
+  targetLength = targetLength >> 0; // truncate if number, or convert non-number to 0;
+  padString = String(typeof padString !== "undefined" ? padString : " ");
+  if (current.length >= targetLength) {
+    return String(current);
+  } else {
+    targetLength = targetLength - current.length;
+    if (targetLength > padString.length) {
+      padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
+    }
+    return padString.slice(0, targetLength) + String(current);
+  }
+};
+
+// Something Interesting Links
+const links = ref([
+  {
+    id: generateId(),
+    title: "Plum",
+    url: "/plum",
+  },
+  {
+    id: generateId(),
+    title: "Minesweeper",
+    url: "/minesweeper",
+  },
+]);
+</script>
+
 <template>
   <main class="w-screen h-screen flex justify-center items-center">
     <div>
       <h1 class="text-lg font-bold">Something Interesting</h1>
       <div class="w-96 mt-2 gap-8 columns-2">
-        <RouterLink class="block text-gray-400 hover:text-gray-600" to="/plum">
-          <span class="opacity-50">01. </span>
-          <strong>Plum</strong>
-        </RouterLink>
         <RouterLink
+          v-for="link of links"
           class="block text-gray-400 hover:text-gray-600"
-          to="/minesweeper"
+          :to="link.url"
         >
-          <span class="opacity-50">02. </span>
-          <strong>Minesweeper</strong>
+          <span class="opacity-50">{{ link.id }}. </span>
+          <strong>{{ link.title }}</strong>
         </RouterLink>
       </div>
       <h1 class="mt-8">
