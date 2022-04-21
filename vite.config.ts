@@ -6,6 +6,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import Inspect from "vite-plugin-inspect";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,6 +23,8 @@ export default defineConfig({
       dts: true,
     }),
     Inspect(),
+    // put it the last one
+    visualizer(),
   ],
   resolve: {
     alias: {
