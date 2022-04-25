@@ -27,6 +27,5 @@ coverage
 *.sln
 *.sw?
 
-# 打包分析工具生成文件
-
+# 打包分析工具 rollup-plugin-visualizer 生成文件
 stats.html
