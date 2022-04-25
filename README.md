@@ -52,3 +52,16 @@ npm run lint
 https://github.com/johnsoncodehk/volar/issues/807
 
 https://github.com/antfu/unplugin-vue-components/issues/343
+
+#### 20220425 更新：
+
+过了这么久都没人发现，antfu 大神也正常地在用，没有我这个匹配不到的问题。思考了一下，好像在 antfu 直播的时候瞥到一眼他的 .npmrc 配置，里面只有一行配置，还有点眼熟，好像是 pnpm 的某项配置。于是上大神的项目上看一眼，在 vitesse 项目里的 .npmrc 中找到了这个：`shamefully-hoist=true`。把里面的配置拿到 pnpm 文档一查，是一种依赖提升相关的配置，描述是“如果某些工具仅在提升的依赖项位于根目录的 node_modules 时才有效，您可以将其设置为 true 来为您提升它们。”
+
+于是在项目里新建了一个 .npmrc 文件，把这行配置抄上，重装一遍依赖，WDNMD 有效了！我哭了 5555
+
+https://pnpm.io/zh/npmrc#shamefully-hoist
+
+```sh
+# .npmrc
+shamefully-hoist=true
+```
