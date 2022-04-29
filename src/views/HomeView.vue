@@ -1,11 +1,23 @@
 <script lang="ts" setup>
+// Something Interesting Links
+const links = ref([
+  {
+    title: "Plum",
+    url: "/plum",
+  },
+  {
+    title: "Minesweeper",
+    url: "/minesweeper",
+  },
+]);
+
 // 生成编号并自动补零函数
-const generateId = (function () {
+const generateId = (function (targetLength) {
   let id = 1;
   return function () {
-    return padStart(`${id++}`, 2, "0");
+    return padStart(`${id++}`, targetLength, "0");
   };
-})();
+})(links.value.length.toString().length);
 
 // padStart 函数
 const padStart = (current: string, targetLength: number, padString: string) => {
@@ -21,20 +33,6 @@ const padStart = (current: string, targetLength: number, padString: string) => {
     return padString.slice(0, targetLength) + String(current);
   }
 };
-
-// Something Interesting Links
-const links = ref([
-  {
-    id: generateId(),
-    title: "Plum",
-    url: "/plum",
-  },
-  {
-    id: generateId(),
-    title: "Minesweeper",
-    url: "/minesweeper",
-  },
-]);
 </script>
 
 <template>
@@ -47,7 +45,7 @@ const links = ref([
           class="block text-gray-400 hover:text-gray-600"
           :to="link.url"
         >
-          <span class="opacity-50">{{ link.id }}. </span>
+          <span class="opacity-50">{{ generateId() }}. </span>
           <strong>{{ link.title }}</strong>
         </RouterLink>
       </div>
