@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  /* box-sizing 最佳实践 */
   html {
     box-sizing: border-box;
   }
