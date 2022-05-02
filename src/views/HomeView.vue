@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+// Polyfills
+import { padStart } from "@/utils/polyfills";
+
 // Something Interesting Links
 const links = ref([
   {
@@ -11,27 +14,12 @@ const links = ref([
   },
 ]);
 
-// 生成编号并自动补零函数
-const generateId = (function (targetLength) {
-  let id = 1;
-  return function () {
-    return padStart(`${id++}`, targetLength, "0");
-  };
-})(links.value.length.toString().length);
+// 目标长度
+const targetLength = links.value.length.toString().length;
 
-// padStart 函数
-const padStart = (current: string, targetLength: number, padString: string) => {
-  targetLength = targetLength >> 0; // truncate if number, or convert non-number to 0;
-  padString = String(typeof padString !== "undefined" ? padString : " ");
-  if (current.length >= targetLength) {
-    return String(current);
-  } else {
-    targetLength = targetLength - current.length;
-    if (targetLength > padString.length) {
-      padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
-    }
-    return padString.slice(0, targetLength) + String(current);
-  }
+// 生成编号并自动补零函数
+const generateId = (current: number) => {
+  return padStart(current + "", targetLength, "0");
 };
 </script>
 
@@ -41,11 +29,11 @@ const padStart = (current: string, targetLength: number, padString: string) => {
       <h1 class="text-lg font-bold">Something Interesting</h1>
       <div class="w-96 mt-2 gap-8 columns-2">
         <RouterLink
-          v-for="link of links"
+          v-for="(link, index) of links"
           class="block text-gray-400 hover:text-gray-600"
           :to="link.url"
         >
-          <span class="opacity-50">{{ generateId() }}. </span>
+          <span class="opacity-50">{{ generateId(index + 1) }}. </span>
           <strong>{{ link.title }}</strong>
         </RouterLink>
       </div>
