@@ -1,8 +1,8 @@
-export interface BlockState {
+export interface MineBlock {
   x: number;
   y: number;
   adjacentMines: number;
-  revealed?: boolean;
-  mine?: boolean;
-  flagged?: boolean;
+  revealed: boolean;
+  mine: boolean;
+  flagged: boolean;
 }

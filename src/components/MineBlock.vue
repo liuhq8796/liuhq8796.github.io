@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // Interfaces
-import type { BlockState } from "@/types/Minesweeper";
+import type { MineBlock } from "@/types/Minesweeper";
 
 defineProps<{
-  data: BlockState;
+  data: MineBlock;
 }>();
 
 defineEmits<{
@@ -23,7 +23,7 @@ const NUMBER_COLOR = [
   "text-gray-500",
 ];
 
-const getBlockClass = (item: BlockState) => {
+const getBlockClass = (item: MineBlock) => {
   if (!item.revealed) return "bg-gray-400/10 hover:bg-gray-400";
   return item.mine ? "text-red-400" : NUMBER_COLOR[item.adjacentMines];
 };

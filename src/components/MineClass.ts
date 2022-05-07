@@ -1,5 +1,5 @@
 // Interfaces
-import type { BlockState } from "@/types/Minesweeper";
+import type { MineBlock } from "@/types/Minesweeper";
 
 const DIRECTIONS = [
   [-1, -1],
@@ -13,7 +13,7 @@ const DIRECTIONS = [
 ] as const;
 
 interface GameState {
-  board: BlockState[][];
+  board: MineBlock[][];
   mineGenerated: boolean;
   gameState: "playing" | "lost" | "won";
 }
@@ -68,7 +68,7 @@ export class GamePlay {
     return Math.round(this.random(min, max));
   }
 
-  onClick(item: BlockState) {
+  onClick(item: MineBlock) {
     if (this.state.value.gameState !== "playing") return;
     if (!this.state.value?.mineGenerated) {
       this.generateMines(this.board, item);
@@ -91,13 +91,13 @@ export class GamePlay {
     });
   }
 
-  onRightClick(block: BlockState) {
+  onRightClick(block: MineBlock) {
     if (this.state.value?.gameState !== "playing") return;
     if (block.revealed) return;
     block.flagged = !block.flagged;
   }
 
-  generateMines(state: BlockState[][], initial: BlockState) {
+  generateMines(state: MineBlock[][], initial: MineBlock) {
     const placeRandom = () => {
       const x = this.randomInt(0, this.width - 1);
       const y = this.randomInt(0, this.height - 1);
@@ -134,7 +134,7 @@ export class GamePlay {
     }
   }
 
-  expendZero(block: BlockState) {
+  expendZero(block: MineBlock) {
     if (block.adjacentMines > 0) return;
     this.getSibilings(block).forEach((sibiling) => {
       if (sibiling.flagged || sibiling.revealed) return;
@@ -143,8 +143,8 @@ export class GamePlay {
     });
   }
 
-  getSibilings(block: BlockState) {
-    const sibilings = [] as BlockState[];
+  getSibilings(block: MineBlock) {
+    const sibilings = [] as MineBlock[];
     for (const [dx, dy] of DIRECTIONS) {
       const x = block.x + dx;
       const y = block.y + dy;
