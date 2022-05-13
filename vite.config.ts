@@ -10,6 +10,10 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
+  // 适配 Github Actions 自动部署
+  base: '/personal-website/',
+
   plugins: [
     vue(),
     vueJsx(),
