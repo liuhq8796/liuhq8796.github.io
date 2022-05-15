@@ -40,7 +40,7 @@ const generateId = (current: number) => {
       <h1 class="mt-8">
         <a
           class="text-gray-400 hover:text-gray-600"
-          href="https://github.com/liuhq8796/personal-website"
+          href="https://github.com/liuhq8796/liuhq8796.github.io"
           target="_blank"
           rel="noopener noreferrer"
           >Github</a
