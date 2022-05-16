@@ -54,6 +54,7 @@ export class GamePlay {
             mine: false,
             revealed: false,
             flagged: false,
+            errorFlag: false,
           };
         });
       }),

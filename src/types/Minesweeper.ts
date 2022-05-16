@@ -5,4 +5,5 @@ export interface MineBlock {
   revealed: boolean;
   mine: boolean;
   flagged: boolean;
+  errorFlag: boolean;
 }

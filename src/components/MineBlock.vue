@@ -24,7 +24,8 @@ const NUMBER_COLOR = [
 ];
 
 const getBlockClass = (item: MineBlock) => {
-  if (!item.revealed) return "bg-gray-400/10 hover:bg-gray-400";
+  if (!item.revealed) return "bg-gray-400/20 hover:bg-gray-400";
+  if (item.errorFlag) return "text-red-400";
   return item.mine ? "text-red-400" : NUMBER_COLOR[item.adjacentMines];
 };
 </script>

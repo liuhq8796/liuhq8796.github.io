@@ -12,6 +12,10 @@ const links = ref([
     title: "Minesweeper",
     url: "/minesweeper",
   },
+  {
+    title: "New Minesweeper",
+    url: "/new-minesweeper",
+  },
 ]);
 
 // 目标长度
