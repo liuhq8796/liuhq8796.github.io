@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 const PlumView = () => import("../views/PlumView.vue");
-const MinesweeperView = () => import("../views/MinesweeperView.vue");
 const NewMinesweeperView = () => import("../views/NewMinesweeperView.vue");
 
 const router = createRouter({
@@ -16,11 +15,6 @@ const router = createRouter({
       path: "/plum",
       name: "plum",
       component: PlumView,
-    },
-    {
-      path: "/minesweeper",
-      name: "minesweeper",
-      component: MinesweeperView,
     },
     {
       path: "/new-minesweeper",
