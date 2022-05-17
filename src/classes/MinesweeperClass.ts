@@ -23,6 +23,35 @@ export default class MineClass {
     public mines: number
   ) {
     this.reset();
+
+    const scope = effectScope();
+    scope.run(() => {
+      // 监听胜利条件
+      watchEffect(() => {
+        if (!this.mineGenerated.value) return;
+
+        // 如果所有的非地雷方块都被揭开，则游戏胜利
+        const allRevealed = this.blocks.value.every((row) => {
+          return row.every((block) => {
+            return block.revealed && !block.mine;
+          });
+        });
+
+        // 如果所有地雷都被标记，则游戏胜利
+        const allFlagged = this.blocks.value.every((row) => {
+          return row.every((b) => b.mine === b.flagged);
+        });
+
+        if (allRevealed || allFlagged) {
+          this.gameState.value = "won";
+          this.showWin();
+        }
+      });
+    });
+
+    onUnmounted(() => {
+      scope.stop();
+    });
   }
 
   reset() {
@@ -60,22 +89,8 @@ export default class MineClass {
       this.gameState.value = "lost";
       this.showAllMines();
       this.checkErrorFlags();
-      nextTick(() => {
-        alert("You Lost!");
-      });
     } else {
       this.expendZero(block);
-    }
-
-    // 如果所有的非地雷方块都被揭开，则游戏胜利
-    const hasWon = this.blocks.value.every((row) => {
-      return row.every((block) => {
-        return block.revealed && !block.mine;
-      });
-    });
-    if (hasWon) {
-      this.gameState.value = "won";
-      this.showWin();
     }
   }
 
@@ -89,9 +104,6 @@ export default class MineClass {
         }
       }
     }
-    nextTick(() => {
-      alert("You Win!");
-    });
   }
 
   expendZero(block: MineBlock) {
@@ -189,13 +201,5 @@ export default class MineClass {
     if (block.revealed) return;
 
     block.flagged = !block.flagged;
-
-    const hasWon = this.blocks.value.every((row) => {
-      return row.every((b) => b.mine === b.flagged);
-    });
-    if (hasWon) {
-      this.gameState.value = "won";
-      this.showWin();
-    }
   }
 }

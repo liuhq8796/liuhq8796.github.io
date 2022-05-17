@@ -24,4 +24,6 @@ const Minesweeper = new MinesweeperClass(6, 6, 10);
       </div>
     </div>
   </main>
+
+  <Confetti :passed="Minesweeper.gameState.value === 'won'" />
 </template>
