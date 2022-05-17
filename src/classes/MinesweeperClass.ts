@@ -110,7 +110,11 @@ export default class MineClass {
     if (block.adjacentMines === 0) {
       for (const direction of DIRECTIONS) {
         const adjacentBlock = this.getAdjacentBlock(block, direction);
-        if (adjacentBlock && !adjacentBlock.revealed) {
+        if (
+          adjacentBlock &&
+          !adjacentBlock.revealed &&
+          !adjacentBlock.flagged
+        ) {
           adjacentBlock.revealed = true;
           this.expendZero(adjacentBlock);
         }
