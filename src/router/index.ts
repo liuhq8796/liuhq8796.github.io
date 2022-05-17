@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 const PlumView = () => import("../views/PlumView.vue");
-const NewMinesweeperView = () => import("../views/NewMinesweeperView.vue");
+const MinesweeperView = () => import("../views/MinesweeperView.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,9 +17,9 @@ const router = createRouter({
       component: PlumView,
     },
     {
-      path: "/new-minesweeper",
-      name: "new-minesweeper",
-      component: NewMinesweeperView,
+      path: "/minesweeper",
+      name: "minesweeper",
+      component: MinesweeperView,
     },
   ],
 });

@@ -9,8 +9,8 @@ const links = ref([
     url: "/plum",
   },
   {
-    title: "New Minesweeper",
-    url: "/new-minesweeper",
+    title: "Minesweeper",
+    url: "/minesweeper",
   },
 ]);
 
