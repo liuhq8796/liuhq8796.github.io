@@ -2,7 +2,7 @@
 // Classes
 import MinesweeperClass from "@/classes/MinesweeperClass";
 
-const Minesweeper = new MinesweeperClass(6, 6, 10);
+const Minesweeper = new MinesweeperClass(8, 8, 10);
 
 const minesLeft = Minesweeper.useMinesLeft();
 </script>
