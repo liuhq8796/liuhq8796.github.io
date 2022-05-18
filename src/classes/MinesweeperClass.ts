@@ -54,6 +54,14 @@ export default class MineClass {
     });
   }
 
+  useMinesLeft() {
+    return computed(() => {
+      if (!this.mineGenerated.value) return this.mines;
+      return this.flatten(this.blocks.value).filter((b) => b.mine && !b.flagged)
+        .length;
+    });
+  }
+
   reset() {
     this.blocks.value = Array.from({ length: this.height }, (_, y) => {
       return Array.from({ length: this.width }, (_, x) => {
@@ -68,6 +76,8 @@ export default class MineClass {
         };
       });
     });
+    this.mineGenerated.value = false;
+    this.gameState.value = "playing";
   }
 
   onClick(block: MineBlock) {
@@ -157,15 +167,7 @@ export default class MineClass {
       // 如果炸弹在初始化的位置或相邻的位置，则重新生成
       do {
         block = this.getRandomBlock();
-      } while (
-        block.mine ||
-        ((block.x === initial.x - 1 ||
-          block.x === initial.x ||
-          block.x === initial.x + 1) &&
-          (block.y === initial.y - 1 ||
-            block.y === initial.y ||
-            block.y === initial.y + 1))
-      );
+      } while (block.mine || block === initial);
       block.mine = true;
     }
   }
