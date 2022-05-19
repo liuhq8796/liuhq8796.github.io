@@ -19,6 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - run: |
+          git config user.name "Lucas Liu"
+          git config user.email 100069204+liuhq8796@users.noreply.github.com
       - name: Install pnpm
         uses: pnpm/action-setup@v2.1.0
         with:
