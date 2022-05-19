@@ -57,8 +57,10 @@ export default class MineClass {
   useMinesLeft() {
     return computed(() => {
       if (!this.mineGenerated.value) return this.mines;
-      return this.flatten(this.blocks.value).filter((b) => b.mine && !b.flagged)
-        .length;
+      const minesLeft =
+        this.mines -
+        this.flatten(this.blocks.value).filter((b) => b.flagged).length;
+      return minesLeft < 0 ? 0 : minesLeft;
     });
   }
 
