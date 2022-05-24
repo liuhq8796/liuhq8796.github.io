@@ -46,17 +46,17 @@ const generateId = (current: number) => {
           <strong>{{ link.title }}</strong>
         </RouterLink>
       </div>
-      <h1 class="mt-8">
+      <div class="mt-8">
         <a
           class="text-gray-400 hover:text-gray-600"
           href="https://github.com/liuhq8796/liuhq8796.github.io"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
           >Github</a
         >
         <br />
         <span class="text-gray-300">from 2022/3/12</span>
-      </h1>
+      </div>
     </div>
   </main>
 </template>
