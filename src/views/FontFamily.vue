@@ -1,10 +1,17 @@
 <template>
   <main class="w-screen h-screen flex flex-col justify-center items-center">
-    <GoogleLogo
-      class="text-8xl leading-normal"
-      :class="[fontFamily]"
-    ></GoogleLogo>
     <div>
+      <div class="flex">
+        <RouterLink to="/"><IconRoundChevronLeft class="w-6 h-6" /></RouterLink>
+        <h1>Font Family</h1>
+      </div>
+      <GoogleLogo
+        class="text-8xl leading-normal"
+        :class="[fontFamily]"
+      ></GoogleLogo>
+    </div>
+
+    <div class="mt-4">
       <Button
         v-for="fontFamily of fontFamilyGroup"
         class="ml-4 first-of-type:ml-0"
