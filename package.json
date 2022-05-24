@@ -1,6 +1,6 @@
 {
   "name": "liuhq8796.github.io",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
