@@ -17,6 +17,10 @@ const links = ref<Link[]>([
     title: "Minesweeper",
     url: "/minesweeper",
   },
+  {
+    title: "Google Logo",
+    url: "/google-logo",
+  },
 ]);
 
 // 目标长度

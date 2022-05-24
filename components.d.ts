@@ -5,7 +5,9 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Button: typeof import('./src/components/Button.vue')['default']
     Confetti: typeof import('./src/components/Confetti.vue')['default']
+    GoogleLogo: typeof import('./src/components/GoogleLogo.vue')['default']
     IconBomb: typeof import('./src/components/icons/IconBomb.vue')['default']
     IconFlag: typeof import('./src/components/icons/IconFlag.vue')['default']
     IconRoundChevronLeft: typeof import('./src/components/icons/IconRoundChevronLeft.vue')['default']
