@@ -11,7 +11,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    // TypeScript intellisense is disabled on template.
+    // To enable, configure `"jsx": "preserve"` in the `"compilerOptions"` property of tsconfig or jsconfig.
+    "jsx": "preserve"
   },
 
   "references": [

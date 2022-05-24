@@ -2,8 +2,13 @@
 // Polyfills
 import { padStart } from "@/utils/polyfills";
 
+interface Link {
+  title: string;
+  url: string;
+}
+
 // Something Interesting Links
-const links = ref([
+const links = ref<Link[]>([
   {
     title: "Plum",
     url: "/plum",
