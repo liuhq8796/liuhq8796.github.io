@@ -18,8 +18,8 @@ const links = ref<Link[]>([
     url: "/minesweeper",
   },
   {
-    title: "Google Logo",
-    url: "/google-logo",
+    title: "Font Family",
+    url: "/font-family",
   },
 ]);
 

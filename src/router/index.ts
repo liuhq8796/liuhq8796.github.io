@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 const PlumView = () => import("../views/PlumView.vue");
 const MinesweeperView = () => import("../views/MinesweeperView.vue");
-const GoogleLogoView = () => import("../views/GoogleLogoView.vue");
+const FontFamily = () => import("../views/FontFamily.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,9 +23,9 @@ const router = createRouter({
       component: MinesweeperView,
     },
     {
-      path: "/google-logo",
-      name: "google-logo",
-      component: GoogleLogoView,
+      path: "/font-family",
+      name: "font-family",
+      component: FontFamily,
     },
   ],
 });
