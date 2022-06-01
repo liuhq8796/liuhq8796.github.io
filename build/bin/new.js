@@ -40,7 +40,15 @@ const files = [
     content: `<script setup lang="ts"></script>
 
 <template>
-  <div></div>
+  <main class="w-screen h-screen flex flex-col justify-center items-center">
+  <div>
+    <div class="flex">
+      <RouterLink to="/"><IconRoundChevronLeft class="w-6 h-6" /></RouterLink>
+      <h1>${upperTitle}</h1>
+    </div>
+    <div></div>
+  </div>
+  </main>
 </template>`,
   },
 ];
@@ -61,3 +69,5 @@ files.forEach((file) => {
     .write(file.content, "utf8")
     .end("\n");
 });
+
+console.log("DONE!");
