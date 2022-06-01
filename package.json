@@ -2,6 +2,7 @@
   "name": "liuhq8796.github.io",
   "version": "0.2.1",
   "scripts": {
+    "new": "node build/bin/new.js",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",

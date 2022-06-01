@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 // Polyfills
-import { padStart } from "@/utils/polyfills";
+import { padStart, entries } from "@/utils/polyfills";
+
+// Json
+import somethingInteresting from "@/json/something-interesting.json";
 
 interface Link {
   title: string;
@@ -8,20 +11,12 @@ interface Link {
 }
 
 // Something Interesting Links
-const links = ref<Link[]>([
-  {
-    title: "Plum",
-    url: "/plum",
-  },
-  {
-    title: "Minesweeper",
-    url: "/minesweeper",
-  },
-  {
-    title: "Font Family",
-    url: "/font-family",
-  },
-]);
+const links = ref<Link[]>(
+  entries(somethingInteresting).map(([title, url]) => ({
+    title,
+    url,
+  }))
+);
 
 // 目标长度
 const targetLength = links.value.length.toString().length;
@@ -39,6 +34,7 @@ const generateId = (current: number) => {
       <div class="w-96 mt-2 gap-8 columns-2">
         <RouterLink
           v-for="(link, index) of links"
+          :key="index"
           class="block text-gray-400 hover:text-gray-600"
           :to="link.url"
         >

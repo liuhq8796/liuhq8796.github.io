@@ -16,3 +16,12 @@ export const padStart = (
     return padString.slice(0, targetLength) + String(current);
   }
 };
+
+// entries 函数
+export const entries = (obj: Record<string, string>) => {
+  const result = [];
+  for (const key in obj) {
+    result.push([key, obj[key]]);
+  }
+  return result;
+};
