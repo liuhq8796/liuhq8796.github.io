@@ -13,7 +13,9 @@
   "dependencies": {
     "@vueuse/core": "^8.4.2",
     "canvas-confetti": "^1.5.1",
+    "file-save": "^0.2.0",
     "pinia": "^2.0.14",
+    "uppercamelcase": "^3.0.0",
     "vue": "^3.2.33",
     "vue-router": "^4.0.15"
   },
