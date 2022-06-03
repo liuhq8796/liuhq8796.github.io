@@ -41,13 +41,13 @@ const files = [
 
 <template>
   <main class="w-screen h-screen flex flex-col justify-center items-center">
-  <div>
-    <div class="flex">
-      <RouterLink to="/"><IconRoundChevronLeft class="w-6 h-6" /></RouterLink>
-      <h1>${upperTitle}</h1>
+    <div>
+      <div class="flex">
+        <RouterLink to="/"><IconRoundChevronLeft class="w-6 h-6" /></RouterLink>
+        <h1>BumpText</h1>
+      </div>
+      <div></div>
     </div>
-    <div></div>
-  </div>
   </main>
 </template>`,
   },
