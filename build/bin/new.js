@@ -49,7 +49,9 @@ const files = [
       <div></div>
     </div>
   </main>
-</template>`,
+</template>
+
+<style scoped></style>`,
   },
 ];
 
