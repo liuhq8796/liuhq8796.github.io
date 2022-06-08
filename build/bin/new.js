@@ -44,7 +44,7 @@ const files = [
     <div>
       <div class="flex">
         <RouterLink to="/"><IconRoundChevronLeft class="w-6 h-6" /></RouterLink>
-        <h1>BumpText</h1>
+        <h1>${title}</h1>
       </div>
       <div></div>
     </div>
