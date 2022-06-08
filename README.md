@@ -65,3 +65,7 @@ https://pnpm.io/zh/npmrc#shamefully-hoist
 # .npmrc
 shamefully-hoist=true
 ```
+
+### 如何快速新增一个模块
+
+你只需要在终端中执行 `npm run new [模块名(大驼峰)]` 即可在 `views` 目录下自动生成对应名称的组件以及在 `something-interesting.json` 对象中增加对应模块名和路由的键值对。不必担心路由的配置，项目会自动读取 `views` 目录下的组件，将他们转为正确的路由并加载。
