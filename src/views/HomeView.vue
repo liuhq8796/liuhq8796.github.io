@@ -51,13 +51,13 @@ const technologyStack = [
       <section>
         <p class="my-4 first:mt-0 text-gray-400 text-base">
           Hi，我是 Lucas Liu，一名前端开发工程师，在
-          <AppLink href="https://www.duxiaoman.com/">度小满科技（北京）有限公司</AppLink>
+          <BaseLink href="https://www.duxiaoman.com/">度小满科技（北京）有限公司</BaseLink>
           工作。
         </p>
         <p class="my-4 first:mt-0 text-gray-400 text-base">
           现在正在使用的技术栈有
           <template v-for="(technology, index) of technologyStack" :key="index">
-            <AppLink :href="technology.href">{{ technology.name }}</AppLink
+            <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
             ><span v-if="index + 1 < technologyStack.length">、</span>
           </template>
           等。
