@@ -1,14 +1,7 @@
-<script setup lang="ts"></script>
-
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-    </nav>
-  </header>
+  <AppHeader />
 
   <RouterView />
-</template>
 
-<style scoped></style>
+  <AppFooter />
+</template>
