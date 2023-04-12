@@ -1,45 +1,74 @@
 <script setup lang="ts">
+// 精通技术栈
 const technologyStack = [
   {
     name: 'Vue',
-    href: 'https://vuejs.org/'
+    href: 'https://vuejs.org/',
   },
   {
     name: 'Vue Router',
-    href: 'https://router.vuejs.org/'
+    href: 'https://router.vuejs.org/',
   },
   {
     name: 'Pinia',
-    href: 'https://pinia.vuejs.org/'
+    href: 'https://pinia.vuejs.org/',
   },
   {
     name: 'Vue Use',
-    href: 'https://vueuse.org/'
+    href: 'https://vueuse.org/',
   },
   {
     name: 'Vite',
-    href: 'https://vitejs.dev/'
+    href: 'https://vitejs.dev/',
   },
   {
     name: 'TypeScript',
-    href: 'https://www.typescriptlang.org/'
+    href: 'https://www.typescriptlang.org/',
   },
   {
     name: 'Element Plus',
-    href: 'https://element-plus.org/'
-  },
-  {
-    name: 'Tailwind CSS',
-    href: 'https://tailwindcss.com/'
+    href: 'https://element-plus.org/',
   },
   {
     name: 'playwright',
-    href: 'https://playwright.dev/'
+    href: 'https://playwright.dev/',
   },
   {
     name: 'Cypress',
-    href: 'https://www.cypress.io/'
-  }
+    href: 'https://www.cypress.io/',
+  },
+  {
+    name: 'Git',
+    href: 'https://git-scm.com/',
+  },
+]
+
+// 了解技术栈
+const technologyStack2 = [
+  {
+    name: 'Tailwind CSS',
+    href: 'https://tailwindcss.com/',
+  },
+  {
+    name: 'Express',
+    href: 'https://expressjs.com/',
+  },
+  {
+    name: 'Node.js',
+    href: 'https://nodejs.org/',
+  },
+  {
+    name: 'MongoDB',
+    href: 'https://www.mongodb.com/',
+  },
+  {
+    name: 'Nginx',
+    href: 'https://www.nginx.com/',
+  },
+  {
+    name: 'Docker',
+    href: 'https://www.docker.com/',
+  },
 ]
 </script>
 
@@ -58,6 +87,14 @@ const technologyStack = [
         <template v-for="(technology, index) of technologyStack" :key="index">
           <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
           ><span v-if="index + 1 < technologyStack.length">、</span>
+        </template>
+        等。
+      </p>
+      <p class="my-4 first:mt-0 text-gray-400 text-base">
+        另外，因工作原因和个人兴趣，了解过的技术栈有
+        <template v-for="(technology, index) of technologyStack2" :key="index">
+          <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
+          ><span v-if="index + 1 < technologyStack2.length">、</span>
         </template>
         等。
       </p>
