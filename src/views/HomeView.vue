@@ -83,7 +83,7 @@ const technologyStack2 = [
         工作。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        现在正在使用的技术栈有
+        目前工作中正在使用的技术栈有
         <template v-for="(technology, index) of technologyStack" :key="index">
           <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
           ><span v-if="index + 1 < technologyStack.length">、</span>
@@ -91,7 +91,7 @@ const technologyStack2 = [
         等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        另外，因工作原因和个人兴趣，了解过的技术栈有
+        另外，因个人兴趣了解过的技术栈有
         <template v-for="(technology, index) of technologyStack2" :key="index">
           <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
           ><span v-if="index + 1 < technologyStack2.length">、</span>
