@@ -36,7 +36,7 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build --if-present
+        run: pnpm run build
 
       - name: Copy 404.html
         run: cp dist/index.html dist/404.html
