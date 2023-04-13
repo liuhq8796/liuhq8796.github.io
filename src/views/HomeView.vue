@@ -91,6 +91,15 @@ const technologyStack2 = [
         等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
+        参与团队组织的技术调研，了解行业前沿技术，分享过
+        <BaseLink href="#" target="_self">BEM、Atomic CSS 方法论</BaseLink>、<BaseLink
+          href="#"
+          target="_self"
+          >Nginx JavaScript</BaseLink
+        >
+        等主题。
+      </p>
+      <p class="my-4 first:mt-0 text-gray-400 text-base">
         另外，因个人兴趣了解过的技术栈有
         <template v-for="(technology, index) of technologyStack2" :key="index">
           <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
