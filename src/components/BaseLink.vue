@@ -3,7 +3,7 @@
     class="cursor-pointer no-underline border-0 border-b border-solid border-b-gray-400/30 hover:border-b-gray-400 transition-300 ease-in-out"
     :class="[textColor ? textColor : 'text-white']"
     :href="href"
-    target="_blank"
+    :target="target ? target : '_blank'"
     rel="noopener noreferrer"
     ><slot></slot
   ></a>
@@ -12,6 +12,7 @@
 <script setup lang="ts">
 defineProps<{
   href: string
+  target?: string
   textColor?: string
 }>()
 </script>
