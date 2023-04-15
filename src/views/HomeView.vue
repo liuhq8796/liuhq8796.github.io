@@ -6,6 +6,10 @@ const technologyStack = [
     href: 'https://vuejs.org/',
   },
   {
+    name: 'Vite',
+    href: 'https://vitejs.dev/',
+  },
+  {
     name: 'Vue Router',
     href: 'https://router.vuejs.org/',
   },
@@ -18,10 +22,6 @@ const technologyStack = [
     href: 'https://vueuse.org/',
   },
   {
-    name: 'Vite',
-    href: 'https://vitejs.dev/',
-  },
-  {
     name: 'TypeScript',
     href: 'https://www.typescriptlang.org/',
   },
@@ -30,12 +30,12 @@ const technologyStack = [
     href: 'https://element-plus.org/',
   },
   {
-    name: 'playwright',
-    href: 'https://playwright.dev/',
+    name: 'Webpack',
+    href: 'https://webpack.js.org/',
   },
   {
-    name: 'Cypress',
-    href: 'https://www.cypress.io/',
+    name: 'Rollup',
+    href: 'https://rollupjs.org/',
   },
   {
     name: 'Git',
@@ -83,7 +83,7 @@ const technologyStack2 = [
         工作。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        目前工作中正在使用的技术栈有
+        目前正在使用的技术栈有
         <template v-for="(technology, index) of technologyStack" :key="index">
           <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
           ><span v-if="index + 1 < technologyStack.length">、</span>
@@ -91,13 +91,20 @@ const technologyStack2 = [
         等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        参与团队组织的技术调研，了解行业前沿技术，分享过
+        除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/"
+          >Cypress</BaseLink
+        >/<BaseLink href="https://playwright.dev/">playwright</BaseLink>
+        E2E自动化测试项目、<BaseLink href="#" target="_self">Chrome 浏览器扩展</BaseLink>
+        开发等等。
+      </p>
+      <p class="my-4 first:mt-0 text-gray-400 text-base">
+        分享过行业流行/前沿技术，例如：
         <BaseLink href="#" target="_self">BEM、Atomic CSS 方法论</BaseLink>、<BaseLink
           href="#"
           target="_self"
           >Nginx JavaScript</BaseLink
         >
-        等主题。
+        等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         另外，因个人兴趣了解过的技术栈有
