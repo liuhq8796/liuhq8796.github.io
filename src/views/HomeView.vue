@@ -95,10 +95,12 @@ const technologyShare = [
   {
     name: 'BEM 与 Atomic CSS 方法论',
     href: bemAndAtomicCssMethodologyUrl,
+    target: isGitHubPages || isNetlify ? '_blank' : '_self',
   },
   {
     name: 'Nginx 配置中的 JavaScript',
     href: javascriptInNginxConfigurationUrl,
+    target: isGitHubPages || isNetlify ? '_blank' : '_self',
   },
 ]
 </script>
@@ -136,7 +138,9 @@ const technologyShare = [
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         同时，我也十分关注行业流行 / 前沿技术，分享过如：
         <template v-for="(technology, index) of technologyShare" :key="index">
-          <BaseLink :href="technology.href" target="_self">{{ technology.name }}</BaseLink
+          <BaseLink :href="technology.href" :target="technology.target">{{
+            technology.name
+          }}</BaseLink
           ><span v-if="index + 1 < technologyShare.length">、</span>
         </template>
         等主题。
