@@ -18,9 +18,9 @@ export default defineConfig({
       types: [
         {
           from: 'vue-router',
-          names: ['RouterLink', 'RouterView']
-        }
-      ]
+          names: ['RouterLink', 'RouterView'],
+        },
+      ],
     }),
     AutoImport({
       // targets to transform
@@ -28,19 +28,19 @@ export default defineConfig({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
         /\.vue\?vue/, // .vue
-        /\.md$/ // .md
+        /\.md$/, // .md
       ],
       // global imports to register
       imports: ['vue', 'vue-router'],
       dts: true,
       eslintrc: {
-        enabled: true
-      }
-    })
+        enabled: true,
+      },
+    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 })
