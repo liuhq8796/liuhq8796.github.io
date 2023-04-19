@@ -70,6 +70,37 @@ const technologyStack2 = [
     href: 'https://www.docker.com/',
   },
 ]
+
+// 判断当前页面是否在 GitHub Pages 上
+const isGitHubPages = window.location.hostname === 'liuhq8796.github.io'
+// 判断当前页面是否在 Netlify 上
+const isNetlify = window.location.hostname === 'lucasliu.netlify.app'
+
+const baseUrl = isGitHubPages
+  ? 'https://liuhq8796.github.io/blog'
+  : isNetlify
+  ? 'https://lucasliu-blog.netlify.app'
+  : ''
+
+const bemAndAtomicCssMethodologyUrl = baseUrl
+  ? `${baseUrl}/articles/css/bem-and-atomic-css-methodology.html`
+  : '#'
+
+const javascriptInNginxConfigurationUrl = baseUrl
+  ? `${baseUrl}/articles/nginx/javascript-in-nginx-configuration.html`
+  : '#'
+
+// 技术分享
+const technologyShare = [
+  {
+    name: 'BEM 与 Atomic CSS 方法论',
+    href: bemAndAtomicCssMethodologyUrl,
+  },
+  {
+    name: 'Nginx 配置中的 JavaScript',
+    href: javascriptInNginxConfigurationUrl,
+  },
+]
 </script>
 
 <template>
@@ -93,18 +124,22 @@ const technologyStack2 = [
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/"
           >Cypress</BaseLink
-        >/<BaseLink href="https://playwright.dev/">playwright</BaseLink>
-        E2E自动化测试项目、<BaseLink href="#" target="_self">Chrome 浏览器扩展</BaseLink>
+        >
+        /
+        <BaseLink href="https://playwright.dev/">playwright</BaseLink> E2E自动化测试项目、<BaseLink
+          href="#"
+          target="_self"
+          >Chrome 浏览器扩展</BaseLink
+        >
         开发等等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        分享过行业流行/前沿技术，例如：
-        <BaseLink href="#" target="_self">BEM 与 Atomic CSS 方法论</BaseLink>、<BaseLink
-          href="#"
-          target="_self"
-          >Nginx JavaScript</BaseLink
-        >
-        等。
+        同时,我也十分关注行业流行 / 前沿技术，分享过如：
+        <template v-for="(technology, index) of technologyShare" :key="index">
+          <BaseLink :href="technology.href" target="_self">{{ technology.name }}</BaseLink
+          ><span v-if="index + 1 < technologyShare.length">、</span>
+        </template>
+        等主题。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         另外，因个人兴趣了解过的技术栈有
