@@ -134,7 +134,7 @@ const technologyShare = [
         开发等等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        同时,我也十分关注行业流行 / 前沿技术，分享过如：
+        同时，我也十分关注行业流行 / 前沿技术，分享过如：
         <template v-for="(technology, index) of technologyShare" :key="index">
           <BaseLink :href="technology.href" target="_self">{{ technology.name }}</BaseLink
           ><span v-if="index + 1 < technologyShare.length">、</span>
