@@ -99,7 +99,7 @@ const technologyStack2 = [
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         分享过行业流行/前沿技术，例如：
-        <BaseLink href="#" target="_self">BEM、Atomic CSS 方法论</BaseLink>、<BaseLink
+        <BaseLink href="#" target="_self">BEM 与 Atomic CSS 方法论</BaseLink>、<BaseLink
           href="#"
           target="_self"
           >Nginx JavaScript</BaseLink
