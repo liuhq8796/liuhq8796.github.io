@@ -1,0 +1,10 @@
+/* 全局调整盒模型 */
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}

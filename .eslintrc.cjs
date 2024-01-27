@@ -8,6 +8,7 @@ module.exports = {
     'eslint:recommended',
     '@vue/eslint-config-typescript',
     'plugin:@stylistic/recommended-extends',
+    './.eslintrc-auto-import.json',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
