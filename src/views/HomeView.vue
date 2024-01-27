@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { type BaseLinkProps } from '@/components/BaseLink.vue'
+
 // 精通技术栈
 const technologyStack = [
   {
@@ -71,36 +73,23 @@ const technologyStack2 = [
   },
 ]
 
-// 判断当前页面是否在 GitHub Pages 上
-const isGitHubPages = window.location.hostname === 'liuhq8796.github.io'
-// 判断当前页面是否在 Netlify 上
-const isNetlify = window.location.hostname === 'lucasliu.netlify.app'
+const baseUrl = import.meta.env.VITE_BLOG_URL
 
-const baseUrl = isGitHubPages
-  ? 'https://liuhq8796.github.io/blog'
-  : isNetlify
-    ? 'https://lucasliu-blog.netlify.app'
-    : ''
+const bemAndAtomicCssMethodologyUrl = `${baseUrl}/articles/css/bem-and-atomic-css-methodology.html`
 
-const bemAndAtomicCssMethodologyUrl = baseUrl
-  ? `${baseUrl}/articles/css/bem-and-atomic-css-methodology.html`
-  : '#'
-
-const javascriptInNginxConfigurationUrl = baseUrl
-  ? `${baseUrl}/articles/nginx/javascript-in-nginx-configuration.html`
-  : '#'
+const javascriptInNginxConfigurationUrl = `${baseUrl}/articles/nginx/javascript-in-nginx-configuration.html`
 
 // 技术分享
-const technologyShare = [
+const technologyShare: (BaseLinkProps & { name: string })[] = [
   {
     name: 'BEM 与 Atomic CSS 方法论',
-    href: bemAndAtomicCssMethodologyUrl,
-    target: isGitHubPages || isNetlify ? '_blank' : '_self',
+    href: import.meta.env.DEV ? '#' : bemAndAtomicCssMethodologyUrl,
+    target: import.meta.env.DEV ? '_self' : '_blank',
   },
   {
     name: 'Nginx 配置中的 JavaScript',
-    href: javascriptInNginxConfigurationUrl,
-    target: isGitHubPages || isNetlify ? '_blank' : '_self',
+    href: import.meta.env.DEV ? '#' : javascriptInNginxConfigurationUrl,
+    target: import.meta.env.DEV ? '_self' : '_blank',
   },
 ]
 </script>

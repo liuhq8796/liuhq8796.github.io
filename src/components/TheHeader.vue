@@ -1,14 +1,10 @@
 <script setup lang="ts">
-let blogUrl = import.meta.env.VITE_BLOG_URL
+const blogUrl = import.meta.env.VITE_BLOG_URL
 
-const blogTarget = computed(() => {
-  if (import.meta.env.DEV) {
-    return '_self'
-  }
-  else {
-    return '_blank'
-  }
-})
+let blogTarget = '_blank'
+if (import.meta.env.DEV) {
+  blogTarget = '_self'
+}
 </script>
 
 <template>
