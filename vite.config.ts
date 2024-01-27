@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -42,7 +41,6 @@ export default defineConfig({
     Components({
       dts: true, // enabled by default if `typescript` is installed
     }),
-    UnoCSS(),
   ],
   resolve: {
     alias: {

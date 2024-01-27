@@ -1,7 +1,7 @@
 import '@csstools/normalize.css'
 import '@csstools/normalize.css/opinionated.css'
 import './assets/best-practices.css'
-import 'virtual:uno.css'
+import './assets/tailwind-style.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
