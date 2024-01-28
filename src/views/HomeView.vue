@@ -95,79 +95,105 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
 </script>
 
 <template>
-  <article class="m-auto max-w-2xl">
-    <h1 class="text-white text-3xl font-serif mb-8 mt-0">
-      Lucas Liu
-    </h1>
+  <main class="w-full min-w-min h-full overflow-auto flex justify-center items-center bg-gradient-to-t from-blue-500 to-sky-300">
+    <!-- 垃圾 Tailwind CSS -->
+    <div class="w-[780px] h-[580px] shrink-0 basis-[780px] bg-white relative mx-8">
+      <img
+        src="@/assets/avatar.jpg"
+        alt="avatar"
+        class="absolute top-[190px] left-[25px] w-[220px] z-[2] h-[220px] rounded-[50%] object-cover object-[center_top] border-[10px] border-white border-solid shadow-[0_5px_10px_#00000065]"
+      >
+      <div class=" h-[340px] relative overflow-hidden z-[1]">
+        <div class="content-none w-full h-full absolute bg-[url('@/assets/background.jpg')] bg-cover -z-[1] -skew-y-[4deg] origin-[0_0]" />
+        <div class="pt-[190px] pl-80 [text-shadow:_0_0_20px_#000]">
+          <div class="text-white text-[50px] font-black font-[''] mb-[5px] relative">
+            Lucas Liu
+          </div>
+          <div class="text-white font-medium text-2xl font-['']">
+            前端开发热爱者
+          </div>
+        </div>
+      </div>
 
-    <section>
-      <p class="my-4 first:mt-0 text-gray-400 text-base">
-        Hi，我是 Lucas Liu，一名前端开发工程师，在
-        <BaseLink href="https://www.duxiaoman.com/">
-          度小满科技（北京）有限公司
-        </BaseLink>
-        工作。
-      </p>
-      <p class="my-4 first:mt-0 text-gray-400 text-base">
-        目前正在使用的技术栈有
-        <template
-          v-for="(technology, index) of technologyStack"
-          :key="index"
-        >
-          <BaseLink :href="technology.href">
-            {{ technology.name }}
-          </BaseLink><span v-if="index + 1 < technologyStack.length">、</span>
-        </template>
-        等。
-      </p>
-      <p class="my-4 first:mt-0 text-gray-400 text-base">
-        除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/">
-          Cypress
-        </BaseLink>
-        /
-        <BaseLink href="https://playwright.dev/">
-          playwright
-        </BaseLink> E2E自动化测试项目、<BaseLink
-          href="#"
-          target="_self"
-        >
-          Chrome 浏览器扩展
-        </BaseLink>
-        开发等等。
-      </p>
-      <p class="my-4 first:mt-0 text-gray-400 text-base">
-        同时，我也十分关注行业流行 / 前沿技术，分享过如：
-        <template
-          v-for="(technology, index) of technologyShare"
-          :key="index"
-        >
-          <BaseLink
-            :href="technology.href"
-            :target="technology.target"
-          >
-            {{
-              technology.name
-            }}
-          </BaseLink><span v-if="index + 1 < technologyShare.length">、</span>
-        </template>
-        等主题。
-      </p>
-      <p class="my-4 first:mt-0 text-gray-400 text-base">
-        另外，因个人兴趣了解过的技术栈有
-        <template
-          v-for="(technology, index) of technologyStack2"
-          :key="index"
-        >
-          <BaseLink :href="technology.href">
-            {{ technology.name }}
-          </BaseLink><span v-if="index + 1 < technologyStack2.length">、</span>
-        </template>
-        等。
-      </p>
-      <p class="my-4 first:mt-0 text-gray-400 text-base">
-        在编程之外，我对动漫和游戏很感兴趣，经常在 B
-        站看番，玩一玩原神和一些音游，偶尔看看科幻或者搞笑电影。
-      </p>
-    </section>
-  </article>
+      <div class="foot">
+        <section class="tags">
+          <span class="tag">#HTML</span>
+          <span class="tag">#CSS</span>
+          <span class="tag">#JS</span>
+          <span class="tag">#Vue</span>
+          <span class="tag">#TS</span>
+        </section>
+
+        <section class="introduce">
+          <p class="my-4 first:mt-0 text-gray-400 text-base">
+            Hi，我是 Lucas Liu，一名前端开发工程师，在
+            <BaseLink href="https://www.duxiaoman.com/">
+              度小满科技（北京）有限公司
+            </BaseLink>
+            工作。
+          </p>
+          <p class="my-4 first:mt-0 text-gray-400 text-base">
+            目前正在使用的技术栈有
+            <template
+              v-for="(technology, index) of technologyStack"
+              :key="index"
+            >
+              <BaseLink :href="technology.href">
+                {{ technology.name }}
+              </BaseLink><span v-if="index + 1 < technologyStack.length">、</span>
+            </template>
+            等。
+          </p>
+          <p class="my-4 first:mt-0 text-gray-400 text-base">
+            除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/">
+              Cypress
+            </BaseLink>
+            /
+            <BaseLink href="https://playwright.dev/">
+              playwright
+            </BaseLink> E2E自动化测试项目、<BaseLink
+              href="#"
+              target="_self"
+            >
+              Chrome 浏览器扩展
+            </BaseLink>
+            开发等等。
+          </p>
+          <p class="my-4 first:mt-0 text-gray-400 text-base">
+            同时，我也十分关注行业流行 / 前沿技术，分享过如：
+            <template
+              v-for="(technology, index) of technologyShare"
+              :key="index"
+            >
+              <BaseLink
+                :href="technology.href"
+                :target="technology.target"
+              >
+                {{
+                  technology.name
+                }}
+              </BaseLink><span v-if="index + 1 < technologyShare.length">、</span>
+            </template>
+            等主题。
+          </p>
+          <p class="my-4 first:mt-0 text-gray-400 text-base">
+            另外，因个人兴趣了解过的技术栈有
+            <template
+              v-for="(technology, index) of technologyStack2"
+              :key="index"
+            >
+              <BaseLink :href="technology.href">
+                {{ technology.name }}
+              </BaseLink><span v-if="index + 1 < technologyStack2.length">、</span>
+            </template>
+            等。
+          </p>
+          <p class="my-4 first:mt-0 text-gray-400 text-base">
+            在编程之外，我对动漫和游戏很感兴趣，经常在 B
+            站看番，玩一玩原神和一些音游，偶尔看看科幻或者搞笑电影。
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
 </template>
