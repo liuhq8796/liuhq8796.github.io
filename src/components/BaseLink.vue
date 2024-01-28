@@ -18,6 +18,5 @@ withDefaults(defineProps<BaseLinkProps>(), {
     :href="href"
     :target="target"
     rel="noopener noreferrer"
-    ><slot></slot
-  ></a>
+  ><slot /></a>
 </template>

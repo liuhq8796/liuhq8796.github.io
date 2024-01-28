@@ -96,49 +96,71 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
 
 <template>
   <article class="m-auto max-w-2xl">
-    <h1 class="text-white text-3xl font-serif mb-8 mt-0">Lucas Liu</h1>
+    <h1 class="text-white text-3xl font-serif mb-8 mt-0">
+      Lucas Liu
+    </h1>
 
     <section>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         Hi，我是 Lucas Liu，一名前端开发工程师，在
-        <BaseLink href="https://www.duxiaoman.com/">度小满科技（北京）有限公司</BaseLink>
+        <BaseLink href="https://www.duxiaoman.com/">
+          度小满科技（北京）有限公司
+        </BaseLink>
         工作。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         目前正在使用的技术栈有
-        <template v-for="(technology, index) of technologyStack" :key="index">
-          <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
-          ><span v-if="index + 1 < technologyStack.length">、</span>
+        <template
+          v-for="(technology, index) of technologyStack"
+          :key="index"
+        >
+          <BaseLink :href="technology.href">
+            {{ technology.name }}
+          </BaseLink><span v-if="index + 1 < technologyStack.length">、</span>
         </template>
         等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
-        除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/"
-          >Cypress</BaseLink
-        >
+        除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/">
+          Cypress
+        </BaseLink>
         /
-        <BaseLink href="https://playwright.dev/">playwright</BaseLink> E2E自动化测试项目、<BaseLink
+        <BaseLink href="https://playwright.dev/">
+          playwright
+        </BaseLink> E2E自动化测试项目、<BaseLink
           href="#"
           target="_self"
-          >Chrome 浏览器扩展</BaseLink
         >
+          Chrome 浏览器扩展
+        </BaseLink>
         开发等等。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         同时，我也十分关注行业流行 / 前沿技术，分享过如：
-        <template v-for="(technology, index) of technologyShare" :key="index">
-          <BaseLink :href="technology.href" :target="technology.target">{{
-            technology.name
-          }}</BaseLink
-          ><span v-if="index + 1 < technologyShare.length">、</span>
+        <template
+          v-for="(technology, index) of technologyShare"
+          :key="index"
+        >
+          <BaseLink
+            :href="technology.href"
+            :target="technology.target"
+          >
+            {{
+              technology.name
+            }}
+          </BaseLink><span v-if="index + 1 < technologyShare.length">、</span>
         </template>
         等主题。
       </p>
       <p class="my-4 first:mt-0 text-gray-400 text-base">
         另外，因个人兴趣了解过的技术栈有
-        <template v-for="(technology, index) of technologyStack2" :key="index">
-          <BaseLink :href="technology.href">{{ technology.name }}</BaseLink
-          ><span v-if="index + 1 < technologyStack2.length">、</span>
+        <template
+          v-for="(technology, index) of technologyStack2"
+          :key="index"
+        >
+          <BaseLink :href="technology.href">
+            {{ technology.name }}
+          </BaseLink><span v-if="index + 1 < technologyStack2.length">、</span>
         </template>
         等。
       </p>
