@@ -1,9 +1,10 @@
 <template>
-  <TheHeader />
+  <TheHeader class="text-white" />
 
-  <main class="px-7 py-10">
+  <main class="px-7 py-10 text-white">
     <RouterView />
 
-    <TheFooter />
   </main>
+
+  <TheFooter />
 </template>

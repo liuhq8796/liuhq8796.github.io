@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-10 mb-6 mx-auto max-w-2xl">
+  <footer class="mt-10 mb-6 px-7 mx-auto max-w-2xl text-center">
     <BaseLink
       rel="license"
       href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
