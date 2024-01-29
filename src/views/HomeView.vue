@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { type BaseLinkProps } from '@/components/BaseLink.vue'
 
+const blogUrl = import.meta.env.VITE_BLOG_URL
+
+let blogTarget = '_blank'
+if (import.meta.env.DEV) {
+  blogTarget = '_self'
+}
+
 // 精通技术栈
 const technologyStack = [
   {
@@ -97,15 +104,19 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
 <template>
   <main class="w-full min-w-min h-full overflow-auto flex justify-center items-center bg-gradient-to-t from-blue-500 to-sky-300">
     <!-- 垃圾 Tailwind CSS -->
-    <div class="w-[780px] h-[580px] shrink-0 basis-[780px] bg-white relative mx-8">
+    <div class="w-[780px] shrink-0 basis-[780px] bg-white relative mx-8">
       <img
         src="@/assets/avatar.jpg"
         alt="avatar"
         class="absolute top-[190px] left-[25px] w-[220px] z-[2] h-[220px] rounded-[50%] object-cover object-[center_top] border-[10px] border-white border-solid shadow-[0_5px_10px_#00000065]"
       >
-      <div class=" h-[340px] relative overflow-hidden z-[1]">
-        <div class="content-none w-full h-full absolute bg-[url('@/assets/background.jpg')] bg-cover -z-[1] -skew-y-[4deg] origin-[0_0]" />
-        <div class="pt-[190px] pl-80 [text-shadow:_0_0_20px_#000]">
+      <div class="h-[340px] relative overflow-hidden z-[1]">
+        <img
+          class="w-full h-full absolute -z-[1] object-cover [clip-path:_path('M_0_0_H_780_V_300_L_0_340_V_0')]"
+          src="@/assets/background.jpg"
+          alt="background"
+        >
+        <div class="pt-[190px] pl-[276px] [text-shadow:_0_0_20px_#000]">
           <div class="text-white text-[50px] font-black font-[''] mb-[5px] relative">
             Lucas Liu
           </div>
@@ -115,24 +126,65 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
         </div>
       </div>
 
-      <div class="foot">
-        <section class="tags">
-          <span class="tag">#HTML</span>
-          <span class="tag">#CSS</span>
-          <span class="tag">#JS</span>
-          <span class="tag">#Vue</span>
-          <span class="tag">#TS</span>
+      <div class="leading-[26px] text-[#444] flex">
+        <section class="pl-[30px] pt-[100px] text-center basis-[250px] break-all">
+          <span class="whitespace-nowrap py-[3px] px-2 text-sm leading-[35px] font-bold">Blogs</span>
+          <br>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/js/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#JS</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/html/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#HTML</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/css/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#CSS</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/vue/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Vue</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/ts/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#TS</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/vite/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Vite</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/node/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Node</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/nginx/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Nginx</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/engineering-design/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#工程化设计</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/programming/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#程序设计</span></a>
+          <a
+            :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/reading/`"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#阅读</span></a>
         </section>
 
-        <section class="introduce">
-          <p class="my-4 first:mt-0 text-gray-400 text-base">
+        <section class="p-6 flex-1">
+          <p class="my-4 first:mt-0 text-base">
             Hi，我是 Lucas Liu，一名前端开发工程师，在
             <BaseLink href="https://www.duxiaoman.com/">
               度小满科技（北京）有限公司
             </BaseLink>
             工作。
           </p>
-          <p class="my-4 first:mt-0 text-gray-400 text-base">
+          <p class="my-4 first:mt-0 text-base">
             目前正在使用的技术栈有
             <template
               v-for="(technology, index) of technologyStack"
@@ -144,7 +196,7 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
             </template>
             等。
           </p>
-          <p class="my-4 first:mt-0 text-gray-400 text-base">
+          <p class="my-4 first:mt-0 text-base">
             除了日常的业务开发，也参加了一些技术项目，比如：<BaseLink href="https://www.cypress.io/">
               Cypress
             </BaseLink>
@@ -159,7 +211,7 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
             </BaseLink>
             开发等等。
           </p>
-          <p class="my-4 first:mt-0 text-gray-400 text-base">
+          <p class="my-4 first:mt-0 text-base">
             同时，我也十分关注行业流行 / 前沿技术，分享过如：
             <template
               v-for="(technology, index) of technologyShare"
@@ -176,7 +228,7 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
             </template>
             等主题。
           </p>
-          <p class="my-4 first:mt-0 text-gray-400 text-base">
+          <p class="my-4 first:mt-0 text-base">
             另外，因个人兴趣了解过的技术栈有
             <template
               v-for="(technology, index) of technologyStack2"
@@ -188,7 +240,7 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
             </template>
             等。
           </p>
-          <p class="my-4 first:mt-0 text-gray-400 text-base">
+          <p class="my-4 first:mt-0 text-base">
             在编程之外，我对动漫和游戏很感兴趣，经常在 B
             站看番，玩一玩原神和一些音游，偶尔看看科幻或者搞笑电影。
           </p>
