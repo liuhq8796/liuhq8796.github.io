@@ -102,9 +102,9 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
 </script>
 
 <template>
-  <main class="w-full min-w-min h-full overflow-auto flex justify-center items-center bg-gradient-to-t from-blue-500 to-sky-300">
+  <main class="w-full min-w-min h-full min-h-[836px] overflow-auto flex justify-center items-center bg-gradient-to-t from-blue-500 to-sky-300">
     <!-- 垃圾 Tailwind CSS -->
-    <div class="w-[780px] shrink-0 basis-[780px] bg-white relative mx-8">
+    <div class="w-[780px] shrink-0 basis-[780px] bg-white relative m-8">
       <img
         src="@/assets/avatar.jpg"
         alt="avatar"
@@ -126,57 +126,60 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
         </div>
       </div>
 
-      <div class="leading-[26px] text-[#444] flex">
+      <div class=" flex">
         <section class="pl-[30px] pt-[100px] text-center basis-[250px] break-all">
-          <span class="whitespace-nowrap py-[3px] px-2 text-sm leading-[35px] font-bold">Blogs</span>
+          <a
+            :href="blogUrl"
+            :target="blogTarget"
+          ><span class="whitespace-nowrap hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)] rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer bg-indigo-400 text-white">Blogs</span></a>
           <br>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/js/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#JS</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#JS</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/html/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#HTML</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#HTML</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/css/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#CSS</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#CSS</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/vue/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Vue</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#Vue</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/ts/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#TS</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#TS</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/vite/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Vite</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#Vite</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/node/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Node</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#Node</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/nginx/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#Nginx</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#Nginx</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/engineering-design/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#工程化设计</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#工程化设计</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/programming/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#程序设计</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#程序设计</span></a>
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/reading/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[#444]">#阅读</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#阅读</span></a>
         </section>
 
-        <section class="p-6 flex-1">
+        <section class="p-6 flex-1 text-[#444]">
           <p class="my-4 first:mt-0 text-base">
             Hi，我是 Lucas Liu，一名前端开发工程师，在
             <BaseLink href="https://www.duxiaoman.com/">
