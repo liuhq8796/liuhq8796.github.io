@@ -1,4 +1,3 @@
-import '@csstools/normalize.css'
 import '@csstools/normalize.css/opinionated.css'
 import './assets/tailwind-style.css'
 
