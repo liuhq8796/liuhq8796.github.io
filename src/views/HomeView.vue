@@ -105,17 +105,29 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
   <main class="w-full min-w-min h-full min-h-[836px] overflow-auto flex justify-center items-center bg-gradient-to-t from-blue-500 to-sky-300">
     <!-- 垃圾 Tailwind CSS -->
     <div class="w-[780px] shrink-0 basis-[780px] bg-white relative m-8">
-      <img
-        src="@/assets/avatar.jpg"
-        alt="avatar"
-        class="absolute top-[190px] left-[25px] w-[220px] z-[2] h-[220px] rounded-[50%] object-cover object-[center_top] border-[10px] border-white border-solid shadow-[0_5px_10px_#00000065]"
-      >
-      <div class="h-[340px] relative overflow-hidden z-[1]">
-        <img
-          class="w-full h-full absolute -z-[1] object-cover [clip-path:_path('M_0_0_H_780_V_300_L_0_340_V_0')]"
-          src="@/assets/background.jpg"
-          alt="background"
+      <picture>
+        <source
+          srcset="@/assets/images/avatar.webp"
+          type="image/webp"
         >
+        <img
+          src="@/assets/images/avatar.jpg"
+          alt="avatar"
+          class="absolute top-[190px] left-[25px] w-[220px] z-[2] h-[220px] rounded-[50%] object-cover object-[center_top] border-[10px] border-white border-solid shadow-[0_5px_10px_#00000065]"
+        >
+      </picture>
+      <div class="h-[340px] relative overflow-hidden z-[1]">
+        <picture>
+          <source
+            srcset="@/assets/images/background.webp"
+            type="image/webp"
+          >
+          <img
+            class="w-full h-full absolute -z-[1] object-cover [clip-path:_path('M_0_0_H_780_V_300_L_0_340_V_0')]"
+            src="@/assets/images/background.jpg"
+            alt="background"
+          >
+        </picture>
         <div class="pt-[190px] pl-[276px] [text-shadow:_0_0_20px_#000]">
           <div class="text-white text-[50px] font-black font-[''] mb-[5px] relative">
             Lucas Liu
