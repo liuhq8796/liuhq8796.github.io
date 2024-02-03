@@ -188,7 +188,7 @@ const technologyShare: (BaseLinkProps & { name: string })[] = [
           <a
             :href="blogUrl==='#' ? blogUrl : `${blogUrl}/articles/reading/`"
             :target="blogTarget"
-          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]">#阅读</span></a>
+          ><span class="whitespace-nowrap bg-blue-400 text-white rounded-[10px] py-[3px] px-2 text-sm leading-[35px] mr-1 cursor-pointer hover:bg-[#eee4ad] hover:text-[rgb(0,43,128)]"># 阅读</span></a>
         </section>
 
         <section class="p-6 flex-1 text-[#444]">
