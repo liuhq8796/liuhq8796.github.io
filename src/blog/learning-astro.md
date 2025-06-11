@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+description: 了解 Astro 中的 Markdown
 title: "了解 Astro 中的 Markdown"
 author: Astro 学习者
 pubDate: 2022-08-08

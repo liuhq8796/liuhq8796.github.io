@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: '替换历史提交中的用户名和邮箱'
 author: 'Lucas Liu'
 description: '不小心把工作邮箱提交到GitHub怎么办'
