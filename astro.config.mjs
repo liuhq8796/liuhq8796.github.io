@@ -9,5 +9,6 @@ export default defineConfig({
   site: "https://lucasliu.netlify.app",
   prefetch: {
     prefetchAll: true,
+    defaultStrategy: 'viewport',
   }
 });
