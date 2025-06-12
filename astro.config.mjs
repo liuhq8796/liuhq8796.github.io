@@ -6,5 +6,8 @@ import preact from '@astrojs/preact';
 // https://astro.build/config
 export default defineConfig({
   integrations: [preact()],
-  site: "https://lucasliu.netlify.app"
+  site: "https://lucasliu.netlify.app",
+  prefetch: {
+    prefetchAll: true,
+  }
 });
