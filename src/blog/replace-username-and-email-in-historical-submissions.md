@@ -6,7 +6,7 @@ pubDate: 2025-06-11
 tags: ['git']
 ---
 
-在代码目录用下面这段脚本：
+在代码目录创建 replace.sh 并复制下面的脚本：
 
 ```bash
 # !/bin/sh
@@ -37,6 +37,8 @@ fi
 
 ' --tag-name-filter cat -- --branches --tags
 ```
+
+修改其中的 `旧邮箱`、`新用户名`、`新邮箱` 为你想要替换的内容，执行 `sh replace.sh` 完成替换
 
 最后检查是否还有旧邮箱：
 
