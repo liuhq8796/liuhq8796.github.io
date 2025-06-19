@@ -38,15 +38,12 @@ fi
 ' --tag-name-filter cat -- --branches --tags
 ```
 
-然后清理本地原始备份引用：
-
-```bash
-git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
-```
-
 最后检查是否还有旧邮箱：
 
 ```bash
+# 先清理本地原始备份引用
+git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
+
 # 检查是否还有旧用户名
 git log --all --pretty=format:"%h %an %ae" | grep "$OLD_EMAIL"
 ```
