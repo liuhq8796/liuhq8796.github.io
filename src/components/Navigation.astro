@@ -2,6 +2,62 @@
 
 ---
 
+<style>
+:root {
+  --nav-bg: #ff9776;
+  --nav-link-hover-bg: #ff9776;
+  --nav-link-color: #000;
+}
+html.dark {
+  --nav-bg: #22223b;
+  --nav-link-hover-bg: #22223b;
+  --nav-link-color: #fff;
+}
+
+.nav-links {
+  width: 100%;
+  top: 5rem;
+  left: 48px;
+  background-color: var(--nav-bg);
+  display: none;
+  margin: 0;
+}
+
+.nav-links a {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--nav-link-color);
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: var(--nav-link-hover-bg);
+}
+
+.expanded {
+  display: unset;
+}
+
+@media screen and (min-width: 636px) {
+  .nav-links {
+    margin-left: 5rem;
+    position: static;
+    display: block;
+    width: auto;
+    background: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+}
+</style>
+
 <div class="nav-links">
     <a href="/">首页</a>
     <a href="/about/">关于</a>
