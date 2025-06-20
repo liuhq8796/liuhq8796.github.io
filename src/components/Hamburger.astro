@@ -1,6 +1,32 @@
 ---
 ---
 
+<style>
+:root {
+  --hamburger-color: #ff9776;
+}
+html.dark {
+    --hamburger-color: #ff9776; /* 如有暗色主题需求可调整 */
+}
+
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+.hamburger .line {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: var(--hamburger-color);
+}
+@media screen and (min-width: 636px) {
+  .hamburger {
+    display: none;
+  }
+}
+</style>
+
 <div class="hamburger">
     <span class="line"></span>
     <span class="line"></span>
