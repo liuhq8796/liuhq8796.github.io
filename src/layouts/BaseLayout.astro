@@ -8,11 +8,14 @@ const { pageTitle } = Astro.props;
 
 <html lang="zh-CN">
 	<head>
+		<link rel="preconnect" href="https://cdn.jsdelivr.net">
+  		<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@csstools/normalize.css@12.1.1/opinionated.css" integrity="sha256-dsJEFxp2FFWKsnpiXuw2gpqhxm5LOX3Fmhbws1Xav4g=" crossorigin="anonymous">
 	</head>
 	<body>
 		<Header />
