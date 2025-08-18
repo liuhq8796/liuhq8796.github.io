@@ -10,8 +10,8 @@
   "dependencies": {
     "@astrojs/preact": "^4.1.0",
     "@astrojs/rss": "^4.0.12",
-    "astro": "^5.10.1",
-    "preact": "^10.26.9"
+    "astro": "^5.13.2",
+    "preact": "^10.27.0"
   },
-  "packageManager": "pnpm@10.12.3"
+  "packageManager": "pnpm@10.14.0"
 }
