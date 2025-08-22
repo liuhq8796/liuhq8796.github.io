@@ -3,6 +3,7 @@ title: '重构方法的速写'
 author: 'Lucas Liu'
 description: '《重构：改善既有代码的设计》中包含的重构方法速写'
 pubDate: 2025-08-18
+updatedDate: 2025-08-22
 tags: ['重构']
 ---
 
@@ -70,6 +71,7 @@ function fn(order) {
 ```
 
 ### 1.4 内联变量（Inline Variable）
+
 ```js
 // before
 function fn(anOrder) {
@@ -192,5 +194,185 @@ function parseOrder(aString) {
 
 function price(order, priceList) {
     return order.quantity * priceList[order.productID];
+}
+```
+
+## 封装
+
+### 2.1 封装记录（Encapsulate Record）
+
+```js
+// before
+const organization = { name: "Acme Gooseberries", country: "GB" };
+
+// after
+class Organization {
+    constructor(data) {
+        this._name = data.name;
+        this._country = data.country;
+    }
+    get name() { return this._name; }
+    set name(arg) { this._name = arg; }
+    get country() { return this._country; }
+    set country(arg) { this._country = arg; }
+}
+```
+
+### 2.2 封装集合（Encapsulate Collection）
+
+```js
+// before
+class Person {
+    constructor() {
+        this._courses = [];
+    }
+    get courses() { return this._courses; }
+    set courses(aList) { this._courses = aList; }
+}
+
+// after
+class Person {
+    constructor() {
+        this._courses = [];
+    }
+    get courses() { return this._courses.slice(); }
+    addCourse(aCourse) { this._courses.push(aCourse); }
+    removeCourse(aCourse) {
+        const index = this._courses.indexOf(aCourse);
+        if (index !== -1) this._courses.splice(index, 1);
+    }
+}
+```
+
+### 2.3 以对象取代基本类型（Replace Primitive with Object）
+
+```js
+// before
+orders.filter(o => "high" === o.priority || "rush" === o.priority);
+
+// after
+orders.filter(o => o.priority.higherThan(new Priority("normal")));
+```
+
+### 2.4 以查询取代临时变量（Replace Temp with Query）
+
+```js
+// before
+const basePrice = this._quantity * this._itemPrice;
+if (basePrice > 1000) {
+    return basePrice * 0.95;
+} else {
+    return basePrice * 0.98;
+}
+
+// after
+get basePrice() {
+    return this._quantity * this._itemPrice;
+}
+
+...
+
+if (this.basePrice > 1000) {
+    return this.basePrice * 0.95;
+} else {
+    return this.basePrice * 0.98;
+}
+```
+
+### 2.5 提炼类（Extract Class）
+
+```js
+// before
+class Person {
+    get officeAreaCode() {return this._officeAreaCode;}
+    get officeNumber() {return this._officeNumber;}
+}
+
+// after
+class Person {
+    get officeAreaCode() {return this._telephoneNumber.areaCode;}
+    get officeNumber() {return this._telephoneNumber.number;}
+}
+class TelephoneNumber {
+    get areaCode() {return this._areaCode;}
+    get number() {return this._number;}
+}
+```
+
+### 2.6 内联类（Inline Class）
+
+```js
+// before
+class Person {
+    get officeAreaCode() {return this._telephoneNumber.areaCode;}
+    get officeNumber() {return this._telephoneNumber.number;}
+}
+class TelephoneNumber {
+    get areaCode() {return this._areaCode;}
+    get number() {return this._number;}
+}
+
+// after
+class Person {
+    get officeAreaCode() {return this._officeAreaCode;}
+    get officeNumber() {return this._officeNumber;}
+}
+```
+
+### 2.7 隐藏委托关系（Hide Delegate）
+
+```js
+// before
+manager = aPerson.department.manager;
+
+// after
+manager = aPerson.manager;
+
+class Person {
+    get manager() {
+        return this.department.manager;
+    }
+}
+```
+
+### 2.8 移除中间人（Remove Middle Man）
+
+```js
+// before
+manager = aPerson.manager;
+
+class Person {
+    get manager() {
+        return this.department.manager;
+    }
+}
+
+// after
+manager = aPerson.department.manager;
+```
+
+### 2.9 替换算法（Substitute Algorithm）
+
+```js
+// before
+function foundPerson(people) {
+    for(let i = 0; i < people.length; i++) {
+        if (people[i] === "Don") {
+            return "Don";
+        }
+        if (people[i] === "John") {
+            return "John";
+        }
+        if (people[i] === "Kent") {
+            return "Kent";
+        }
+    }
+    return "";
+}
+
+// after
+function foundPerson(people) {
+    const candidates = ["Don", "John", "Kent"];
+    return people.find(p => candidates.includes(p)) || "";
 }
 ```
